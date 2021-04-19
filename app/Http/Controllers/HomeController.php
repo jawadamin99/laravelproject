@@ -11,4 +11,11 @@ class HomeController extends Controller
     {
         echo "Index";
     }
+    public function home()
+    {
+        $data = [];
+        $data['name'] = "Jawad";
+        $data['email'] = "info@jawadamin.com";
+        return view('welcome')->with($data);
+    }
 }
