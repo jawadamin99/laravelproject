@@ -16,6 +16,10 @@ class HomeController extends Controller
         $data = [];
         $data['name'] = "Jawad";
         $data['email'] = "info@jawadamin.com";
-        return view('welcome')->with($data);
+        return view('index')->with($data);
+    }
+    public function about()
+    {
+        return view('about');
     }
 }
