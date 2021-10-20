@@ -144,10 +144,13 @@
 
 <!-- Javascripts -->
 <script src="{{URL('assets/js/jquery-3.3.1.min.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
 <script src="{{URL('assets/vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{URL('assets/vendor/OwlCarousel/owl.carousel.js')}}"></script>
 <script src="{{URL('assets/vendor/semantic/semantic.min.js')}}"></script>
 <script src="{{URL('assets/js/jquery.countdown.min.js')}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{URL('assets/js/core.js')}}"></script>
 <script src="{{URL('assets/js/custom.js')}}"></script>
 <script src="{{URL('assets/js/offset_overlay.js')}}"></script>
 <script src="{{URL('assets/js/night-mode.js')}}"></script>

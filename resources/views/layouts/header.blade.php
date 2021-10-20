@@ -26,6 +26,7 @@
     <link href="{{URL('assets/vendor/OwlCarousel/assets/owl.theme.default.min.css')}}" rel="stylesheet">
     <link href="{{URL('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{URL('assets/vendor/semantic/semantic.min.css')}}">
+    <link href="{{URL('assets/css/custom.css')}}" rel="stylesheet">
 
 </head>
 

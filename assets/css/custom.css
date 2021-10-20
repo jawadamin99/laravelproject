@@ -1,0 +1,10 @@
+.mt-100 {
+    margin-top: 100px;
+}
+
+label.error {
+    color: red;
+    display: block;
+    margin-bottom: 10px;
+}
+
