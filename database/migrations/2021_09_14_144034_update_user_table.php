@@ -14,12 +14,12 @@ class UpdateUserTable extends Migration
     public function up()
     {
         Schema::create('customers', function (Blueprint $table) {
-            $table->bigIncrements('ID');
-            $table->string('UserName');
+            $table->bigIncrements('UserID');
+            $table->tinyInteger('UserTypeID')->default(14);
+            $table->string('UserName')->nullable();
             $table->string('UserPassword');
             $table->string('UserEmail')->unique();
             $table->string('BillingTitle')->nullable();
-            $table->string('BillingName')->nullable();
             $table->string('BillingFirstName')->nullable();
             $table->string('BillingLastName')->nullable();
             $table->string('BillingCompanyName')->nullable();
@@ -29,20 +29,20 @@ class UpdateUserTable extends Migration
             $table->string('BillingCountyState')->nullable();
             $table->string('BillingPostcode')->nullable();
             $table->string('BillingCountry')->nullable();
-            $table->string('BillingMobile')->nullable();
+            $table->string('BillingMobile');
             $table->string('DeliveryTitle')->nullable();
             $table->string('DeliveryFirstName')->nullable();
             $table->string('DeliveryLastName')->nullable();
             $table->string('DeliveryCompanyName')->nullable();
+            $table->string('DeliveryEmail')->nullable();
             $table->string('DeliveryAddress1')->nullable();
             $table->string('DeliveryAddress2')->nullable();
             $table->string('DeliveryTownCity')->nullable();
             $table->string('DeliveryCountyState')->nullable();
             $table->string('DeliveryCountry')->nullable();
             $table->string('DeliveryMobile')->nullable();
-            $table->string('DeliveryEmail')->unique();
-            $table->timestamp('RegisteredIP')->nullable();
-            $table->string('Active')->nullable();
+            $table->string('RegisteredIP')->nullable();
+            $table->enum('Active',['Y','N'])->default('N');
             $table->rememberToken();
             $table->timestamps();
         });

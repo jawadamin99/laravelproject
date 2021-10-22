@@ -56,7 +56,12 @@ $ (document).ready(function() {
 	});
 });
 
+$(document).ready(function () {
+    $('form').each(function () {
+        $(this).validate();
+    });
 
+});
 // === Dropdown === //
 
 $('.ui.dropdown')
@@ -308,19 +313,19 @@ $("#signup_form").validate({
         element.after(error);
     },
     rules:{
-        password:'required',
-        confirmPassword:{
-            equalTo:"#password"
+        UserPassword:'required',
+        ConfirmPassword:{
+            equalTo:"#UserPassword"
         },
         messages:{
-            email:{
+            UserEmail:{
                 required:'Please enter an email address',
                 valid:'Please enter a valid email address'
             },
-            password:{
+            UserPassword:{
                 required:'Please enter a password',
             },
-            confirmPassword: {
+            ConfirmPassword: {
                 equalTo:'Password not matched'
             }
         }
@@ -329,4 +334,3 @@ $("#signup_form").validate({
         form.submit();
     }
 });
-

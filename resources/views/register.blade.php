@@ -17,36 +17,49 @@
                                             </ul>
                                         </div>
                                     @endif
-                                    <form action="{{URL('register')}}" id="signup_form" method="post">
+                                    @if(session('registered_email'))
+                                        <div class="alert alert-success">
+                                            <i class="fa fa-check-circle"></i> Registration Successful
+                                            <p>Please check your email {{session('registered_email')}} and follow the link to activate your account</p>
+                                        </div>
+                                    @endif
+                                    <form action="{{URL('register')}}" id="signup_form" method="post" novalidate>
                                         @csrf
                                         <div class="form-title"><h6>Sign Up</h6></div>
                                         <div class="form-group pos_rel">
-                                            <input id="firstName" name="firstName" type="text" placeholder="First name"
-                                                   class="form-control lgn_input required">
+                                            <input id="BillingFirstName" name="BillingFirstName" type="text"
+                                                   placeholder="First name"
+                                                   class="form-control lgn_input required"
+                                                   value="{{old('BillingFirstName')}}">
                                             <i class="uil uil-user-circle lgn_icon"></i>
                                         </div>
                                         <div class="form-group pos_rel">
-                                            <input id="lastName" name="lastName" type="text" placeholder="Last name"
-                                                   class="form-control lgn_input required">
+                                            <input id="BillingLastName" name="BillingLastName" type="text"
+                                                   placeholder="Last name"
+                                                   class="form-control lgn_input required"
+                                                   value="{{old('BillingLastName')}}">
                                             <i class="uil uil-user-circle lgn_icon"></i>
                                         </div>
                                         <div class="form-group pos_rel">
-                                            <input id="emailAddress" name="emailAddress" type="email"
-                                                   placeholder="Email Address" class="form-control lgn_input required">
+                                            <input id="UserEmail" name="UserEmail" type="email"
+                                                   placeholder="Email Address" class="form-control lgn_input required"
+                                                   value="{{old('UserEmail')}}">
                                             <i class="uil uil-envelope lgn_icon"></i>
                                         </div>
                                         <div class="form-group pos_rel">
-                                            <input id="phoneNumber" name="phoneNumber" type="text"
-                                                   placeholder="Phone Number" class="form-control lgn_input required">
+                                            <input id="BillingMobile" name="BillingMobile" type="text"
+                                                   placeholder="Mobile Number" class="form-control lgn_input required"
+                                                   value="{{old('BillingMobile')}}">
                                             <i class="uil uil-mobile-android-alt lgn_icon"></i>
                                         </div>
                                         <div class="form-group pos_rel">
-                                            <input id="password" name="password" type="password" placeholder="Password"
+                                            <input id="UserPassword" name="UserPassword" type="password"
+                                                   placeholder="Password"
                                                    class="form-control lgn_input required">
                                             <i class="uil uil-padlock lgn_icon"></i>
                                         </div>
                                         <div class="form-group pos_rel">
-                                            <input id="confirmPassword" name="confirmPassword" type="password"
+                                            <input id="ConfirmPassword" name="ConfirmPassword" type="password"
                                                    placeholder="Confirm Password"
                                                    class="form-control lgn_input required">
                                             <i class="uil uil-padlock lgn_icon"></i>
