@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    protected $primaryKey = 'UserID';
+
     protected $fillable = [
-        'BillingFirstName', 'BillingFirstName', 'UserEmail','UserPassword','BillingMobile','RegisteredIP'
+        'BillingFirstName', 'BillingLastName', 'UserEmail','UserPassword','BillingMobile','RegisteredIP'
     ];
 }

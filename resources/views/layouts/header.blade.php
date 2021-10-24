@@ -15,17 +15,17 @@
     <!-- Stylesheets -->
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap"
           rel="stylesheet">
-    <link href='{{URL('assets/vendor/unicons-2.0.1/css/unicons.css')}}' rel='stylesheet'>
+    <link href='{{URL('assets/external/unicons-2.0.1/css/unicons.css')}}' rel='stylesheet'>
     <link href="{{URL('assets/css/style.css')}}" rel="stylesheet">
     <link href="{{URL('assets/css/responsive.css')}}" rel="stylesheet">
     <link href="{{URL('assets/css/night-mode.css')}}" rel="stylesheet">
 
-    <!-- Vendor Stylesheets -->
-    <link href="{{URL('assets/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
-    <link href="{{URL('assets/vendor/OwlCarousel/assets/owl.carousel.css')}}" rel="stylesheet">
-    <link href="{{URL('assets/vendor/OwlCarousel/assets/owl.theme.default.min.css')}}" rel="stylesheet">
-    <link href="{{URL('assets/vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="{{URL('assets/vendor/semantic/semantic.min.css')}}">
+    <!-- external Stylesheets -->
+    <link href="{{URL('assets/external/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
+    <link href="{{URL('assets/external/OwlCarousel/assets/owl.carousel.css')}}" rel="stylesheet">
+    <link href="{{URL('assets/external/OwlCarousel/assets/owl.theme.default.min.css')}}" rel="stylesheet">
+    <link href="{{URL('assets/external/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{URL('assets/external/semantic/semantic.min.css')}}">
     <link href="{{URL('assets/css/custom.css')}}" rel="stylesheet">
 
 </head>
@@ -323,7 +323,8 @@
             </div>
             <div class="main_logo" id="logo">
                 <a href="{{URL('/')}}"><img src="{{URL('assets/images/logo.svg')}}" alt=""></a>
-                <a href="{{URL('/')}}"><img class="logo-inverse" src="{{URL('assets/images/dark-logo.svg')}}" alt=""></a>
+                <a href="{{URL('/')}}"><img class="logo-inverse" src="{{URL('assets/images/dark-logo.svg')}}"
+                                            alt=""></a>
             </div>
             <div class="select_location">
                 <div class="ui inline dropdown loc-title">
@@ -392,35 +393,49 @@
                                 class='uil uil-heart icon_wishlist'></i><span class="noti_count1">3</span></a>
                     </li>
                     <li class="ui dropdown">
-                        <a href="#" class="opts_account">
-                            <img src="{{URL('assets/images/avatar/img-5.jpg')}}" alt="">
-                            <span class="user__name">John Doe</span>
-                            <i class="uil uil-angle-down"></i>
-                        </a>
-                        <div class="menu dropdown_account">
-                            <div class="night_mode_switch__btn">
-                                <a href="#" id="night-mode" class="btn-night-mode">
-                                    <i class="uil uil-moon"></i> Night mode
-                                    <span class="btn-night-mode-switch">
+                        @if(!session('logged_in'))
+                            <a href="#" class="opts_account">
+                                <span class="user__name">Login</span>
+                                <i class="uil uil-angle-down"></i>
+                            </a>
+                            <div class="menu dropdown_account">
+                                <a href="{{URL('login')}}" class="item channel_item"><i
+                                        class="uil uil-user icon__1"></i>Login</a>
+                                <a href="{{URL('register')}}" class="item channel_item"><i
+                                        class="uil uil-lock icon__1"></i>Register</a>
+                            </div>
+                        @else
+                            <a href="#" class="opts_account">
+                                <img src="{{URL('assets/images/avatar/img-5.jpg')}}" alt="">
+                                <span class="user__name">Hi {{session('UserData.BillingFirstName')}}</span>
+                                <i class="uil uil-angle-down"></i>
+                            </a>
+                            <div class="menu dropdown_account">
+                                <div class="night_mode_switch__btn">
+                                    <a href="#" id="night-mode" class="btn-night-mode">
+                                        <i class="uil uil-moon"></i> Night mode
+                                        <span class="btn-night-mode-switch">
 											<span class="uk-switch-button"></span>
 										</span>
-                                </a>
+                                    </a>
+                                </div>
+                                <a href="{{URL('my_account')}}" class="item channel_item"><i
+                                        class="uil uil-apps icon__1"></i>Dashbaord</a>
+                                <a href="dashboard_my_orders.html" class="item channel_item"><i
+                                        class="uil uil-box icon__1"></i>My Orders</a>
+                                <a href="dashboard_my_wishlist.html" class="item channel_item"><i
+                                        class="uil uil-heart icon__1"></i>My Wishlist</a>
+                                <a href="dashboard_my_wallet.html" class="item channel_item"><i
+                                        class="uil uil-usd-circle icon__1"></i>My Wallet</a>
+                                <a href="dashboard_my_addresses.html" class="item channel_item"><i
+                                        class="uil uil-location-point icon__1"></i>My Address</a>
+                                <a href="offers.html" class="item channel_item"><i
+                                        class="uil uil-gift icon__1"></i>Offers</a>
+                                <a href="faq.html" class="item channel_item"><i class="uil uil-info-circle icon__1"></i>Faq</a>
+                                <a href="{{URL('/logout')}}" class="item channel_item"><i
+                                        class="uil uil-lock-alt icon__1"></i>Logout</a>
+                                @endif
                             </div>
-                            <a href="dashboard_overview.html" class="item channel_item"><i
-                                    class="uil uil-apps icon__1"></i>Dashbaord</a>
-                            <a href="dashboard_my_orders.html" class="item channel_item"><i
-                                    class="uil uil-box icon__1"></i>My Orders</a>
-                            <a href="dashboard_my_wishlist.html" class="item channel_item"><i
-                                    class="uil uil-heart icon__1"></i>My Wishlist</a>
-                            <a href="dashboard_my_wallet.html" class="item channel_item"><i
-                                    class="uil uil-usd-circle icon__1"></i>My Wallet</a>
-                            <a href="dashboard_my_addresses.html" class="item channel_item"><i
-                                    class="uil uil-location-point icon__1"></i>My Address</a>
-                            <a href="offers.html" class="item channel_item"><i
-                                    class="uil uil-gift icon__1"></i>Offers</a>
-                            <a href="faq.html" class="item channel_item"><i class="uil uil-info-circle icon__1"></i>Faq</a>
-                            <a href="sign_in.html" class="item channel_item"><i class="uil uil-lock-alt icon__1"></i>Logout</a>
-                        </div>
                     </li>
                 </ul>
             </div>

@@ -17,6 +17,11 @@
                                             </ul>
                                         </div>
                                     @endif
+                                    @if(session('login_msg'))
+                                        <div class="alert alert-danger">
+                                            <p>{{session('login_msg')}}</p>
+                                        </div>
+                                    @endif
                                     <form action="{{URL('login')}}" id="login_form" method="post" novalidate>
                                         @csrf
                                         <div class="form-title"><h6>Sign In</h6></div>

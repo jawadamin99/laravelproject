@@ -18,3 +18,5 @@ Route::get('/register', [HomeController::class,'register']);
 Route::post('/register', [HomeController::class,'register_handler']);
 Route::get('/login', [HomeController::class,'login']);
 Route::post('/login', [HomeController::class,'login_handler']);
+Route::get('/logout', [HomeController::class,'logout']);
+Route::get('/my_account', [HomeController::class,'my_account']);
