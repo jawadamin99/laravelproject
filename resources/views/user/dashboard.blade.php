@@ -28,7 +28,7 @@
                                 </div>
                             </div>
                             <h4>{{$UserData->BillingFirstName .' ' . $UserData->BillingLastName}}</h4>
-                            <p>{{$UserData->MobileNumber}}<a href="#"><i class="uil uil-edit"></i></a></p>
+                            <p>{{$UserData->BillingMobile}}<a href="#"><i class="uil uil-edit"></i></a></p>
                         </div>
                     </div>
                 </div>
@@ -38,18 +38,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-3 col-md-4">
-                        <div class="left-side-tabs">
-                            <div class="dashboard-left-links">
-                                <a href="{{URL('/')}}" class="user-item active"><i class="uil uil-apps"></i>Overview</a>
-                                <a href="{{URL('/my_orders')}}" class="user-item"><i class="uil uil-box"></i>My
-                                    Orders</a>
-                                <a href="{{URL('/wishlist')}}" class="user-item"><i class="uil uil-heart"></i>Shopping
-                                    Wishlist</a>
-                                <a href="{{URL('/my_addresses')}}" class="user-item"><i
-                                        class="uil uil-location-point"></i>My Address</a>
-                                <a href="{{URL('/logout')}}" class="user-item"><i class="uil uil-exit"></i>Logout</a>
-                            </div>
-                        </div>
+                        @include('user.dashboard_nav')
                     </div>
                     <div class="col-lg-9 col-md-8">
                         <div class="dashboard-right">

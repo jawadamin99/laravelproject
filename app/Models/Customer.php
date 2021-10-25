@@ -11,4 +11,13 @@ class Customer extends Model
     protected $fillable = [
         'BillingFirstName', 'BillingLastName', 'UserEmail','UserPassword','BillingMobile','RegisteredIP'
     ];
+
+    public function billingAddresses()
+    {
+        return $this->hasMany(BillingAddress::class,$this->primaryKey);
+    }
+    public function deliveryAddresses()
+    {
+        return $this->hasMany(DeliveryAddress::class,$this->primaryKey);
+    }
 }

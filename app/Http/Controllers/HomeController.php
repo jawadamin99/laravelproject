@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BillingAddress;
 use App\Models\Customer;
 use App\Models\User;
 use App\Repository\UserRepository;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 use Illuminate\Support\Facades\Session;
@@ -92,14 +92,62 @@ class HomeController extends Controller
         UserRepository::logout();
         return redirect('/');
     }
+
     public function my_account()
     {
-        if(!UserRepository::is_logged_in())
-        {
+        if (!UserRepository::is_logged_in()) {
             return redirect('login');
         }
         $UserData = Customer::findorFail(Session::get('UserID'));
         $UserData->UserPassword = "";
-        return view('user.dashboard')->with('UserData',$UserData);
+        return view('user.dashboard')->with('UserData', $UserData);
+    }
+
+    public function my_addresses()
+    {
+        if (!UserRepository::is_logged_in()) {
+            return redirect('login');
+        }
+        $UserData = Customer::findorFail(Session::get('UserID'));
+        $UserData->UserPassword = "";
+        return view('user.my_addresses')->with('UserData', $UserData);
+    }
+    public  function add_billing_address(Request $request)
+    {
+        if(!UserRepository::is_logged_in())
+        {
+            return redirect('/login');
+        }
+        $request->validate([
+            'BillingTitle' => 'required|max:10',
+            'BillingFirstName' => 'required|max:255',
+            'BillingLastName' => 'required|max:255',
+            'BillingCompanyName' => 'required|max:255',
+            'BillingMobile' => 'required|max:18',
+            'BillingAddress1' => 'required|max:18',
+            'BillingEmail' => 'required|max:255',
+            'BillingTownCity' => 'required|max:255',
+            'BillingCountyState' => 'required|max:255',
+            'BillingPostCode' => 'required|max:255',
+            'BillingCountry' => 'required|max:255',
+        ]);
+
+        $billingAddress = new BillingAddress([
+            'BillingTitle' => $request->BillingTitle,
+            'BillingFirstName' => $request->BillingFirstName,
+            'BillingLastName' => $request->BillingLastName,
+            'BillingCompanyName' => $request->BillingCompanyName,
+            'BillingMobile' => $request->BillingMobile,
+            'BillingAddress1' => $request->BillingAddress1,
+            'BillingAddress2' => $request->BillingAddress2,
+            'BillingEmail' => $request->BillingEmail,
+            'BillingTownCity' => $request->BillingTownCity,
+            'BillingCountyState' => $request->BillingCountyState,
+            'BillingPostCode' => $request->BillingPostCode,
+            'BillingCountry' => $request->BillingCountry
+        ]);
+        $userData = Customer::find(Session::get('UserID'));
+        $userData->billingAddresses()->save($billingAddress);
+        return redirect('/my_addresses');
     }
 }
