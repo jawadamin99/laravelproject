@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class BillingAddress extends Model
 {
     protected $fillable = ['UserID','BillingTitle','BillingFirstName','BillingLastName','BillingCompanyName','BillingMobile','BillingEmail','BillingAddress1',
-        'BillingAddress2','BillingTownCity','BillingCountyState','BillingCountry'];
+        'BillingAddress2','BillingTownCity','BillingCountyState','BillingPostCode','BillingCountry'];
 
     public function customer()
     {

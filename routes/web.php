@@ -22,3 +22,4 @@ Route::get('/logout', [HomeController::class,'logout']);
 Route::get('/my_account', [HomeController::class,'my_account']);
 Route::get('/my_addresses', [HomeController::class,'my_addresses']);
 Route::post('/add_billing_address', [HomeController::class,'add_billing_address']);
+Route::post('/add_delivery_address', [HomeController::class,'add_delivery_address']);
