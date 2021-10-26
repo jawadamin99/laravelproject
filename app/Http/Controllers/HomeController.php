@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\BillingAddress;
 use App\Models\Customer;
+use App\Models\DeliveryAddress;
 use App\Models\User;
 use App\Repository\UserRepository;
 use Illuminate\Http\Request;
@@ -124,7 +125,7 @@ class HomeController extends Controller
             'BillingLastName' => 'required|max:255',
             'BillingCompanyName' => 'required|max:255',
             'BillingMobile' => 'required|max:18',
-            'BillingAddress1' => 'required|max:18',
+            'BillingAddress1' => 'required|max:255',
             'BillingEmail' => 'required|max:255',
             'BillingTownCity' => 'required|max:255',
             'BillingCountyState' => 'required|max:255',
@@ -133,6 +134,7 @@ class HomeController extends Controller
         ]);
 
         $billingAddress = new BillingAddress([
+            'UserID' => Session::get('UserID'),
             'BillingTitle' => $request->BillingTitle,
             'BillingFirstName' => $request->BillingFirstName,
             'BillingLastName' => $request->BillingLastName,
@@ -148,6 +150,46 @@ class HomeController extends Controller
         ]);
         $userData = Customer::find(Session::get('UserID'));
         $userData->billingAddresses()->save($billingAddress);
+        return redirect('/my_addresses');
+    }
+
+    public  function add_delivery_address(Request $request)
+    {
+        if(!UserRepository::is_logged_in())
+        {
+            return redirect('/login');
+        }
+        $request->validate([
+            'DeliveryTitle' => 'required|max:10',
+            'DeliveryFirstName' => 'required|max:255',
+            'DeliveryLastName' => 'required|max:255',
+            'DeliveryCompanyName' => 'required|max:255',
+            'DeliveryMobile' => 'required|max:18',
+            'DeliveryAddress1' => 'required|max:255',
+            'DeliveryEmail' => 'required|max:255',
+            'DeliveryTownCity' => 'required|max:255',
+            'DeliveryCountyState' => 'required|max:255',
+            'DeliveryPostCode' => 'required|max:255',
+            'DeliveryCountry' => 'required|max:255',
+        ]);
+
+        $deliveryAddress = new DeliveryAddress([
+            'UserID' => Session::get('UserID'),
+            'DeliveryTitle' => $request->DeliveryTitle,
+            'DeliveryFirstName' => $request->DeliveryFirstName,
+            'DeliveryLastName' => $request->DeliveryLastName,
+            'DeliveryCompanyName' => $request->DeliveryCompanyName,
+            'DeliveryMobile' => $request->DeliveryMobile,
+            'DeliveryAddress1' => $request->DeliveryAddress1,
+            'DeliveryAddress2' => $request->DeliveryAddress2,
+            'DeliveryEmail' => $request->DeliveryEmail,
+            'DeliveryTownCity' => $request->DeliveryTownCity,
+            'DeliveryCountyState' => $request->DeliveryCountyState,
+            'DeliveryPostCode' => $request->DeliveryPostCode,
+            'DeliveryCountry' => $request->DeliveryCountry
+        ]);
+        $userData = Customer::find(Session::get('UserID'));
+        $userData->deliveryAddresses()->save($deliveryAddress);
         return redirect('/my_addresses');
     }
 }
