@@ -51,8 +51,8 @@
                                             <h4>Billing Addresses</h4>
                                         </div>
                                         <div class="address-body">
-                                            <a href="#" class="add-address hover-btn" data-toggle="modal"
-                                               data-target="#address_model">Add New Address</a>
+                                            <a href="#" class="add-address add-billing-address hover-btn" data-toggle="modal"
+                                               data-target="#address_model">Add Billing Address</a>
                                             @isset($UserData->billingAddresses)
                                                 @foreach($UserData->billingAddresses as $address)
                                                     <div class="address-item">
@@ -64,10 +64,10 @@
                                                             <p>{{$address->BillingTownCity}}, {{$address->BillingCountyState}}, {{$address->BillingPostCode}}</p>
                                                             <p>{{$address->BillingMobile}}, {{$address->BillingCountry}}</p>
                                                             <ul class="action-btns">
-                                                                <li><a href="#" class="action-btn"><i
-                                                                            class="uil uil-edit"></i></a>
+                                                                <li><a href="javascript:void(0);" class="action-btn edit-billing-address" data-addressid="{{$address->ID}}">
+                                                                        <i class="uil uil-edit"></i></a>
                                                                 </li>
-                                                                <li><a href="#" class="action-btn"><i
+                                                                <li><a href="javascript:void(0);" class="action-btn"><i
                                                                             class="uil uil-trash-alt"></i></a></li>
                                                             </ul>
                                                         </div>
@@ -83,8 +83,8 @@
                                             <h4>Delivery Addresses</h4>
                                         </div>
                                         <div class="address-body">
-                                            <a href="#" class="add-address hover-btn" data-toggle="modal"
-                                               data-target="#address_model_delivery">Add New Address</a>
+                                            <a href="#" class="add-address add-delivery-address hover-btn" data-toggle="modal"
+                                               data-target="#address_model_delivery">Add Delivery Address</a>
                                             @isset($UserData->deliveryAddresses)
                                                 @foreach($UserData->deliveryAddresses as $address)
                                                     <div class="address-item">
@@ -96,7 +96,7 @@
                                                             <p>{{$address->DeliveryTownCity}}, {{$address->DeliveryCountyState}}, {{$address->DeliveryPostCode}}</p>
                                                             <p>{{$address->DeliveryMobile}}, {{$address->DeliveryCountry}}</p>
                                                             <ul class="action-btns">
-                                                                <li><a href="#" class="action-btn"><i
+                                                                <li><a href="javascript:void(0);" class="action-btn edit-delivery-address" data-addressid="{{$address->ID}}"><i
                                                                             class="uil uil-edit"></i></a>
                                                                 </li>
                                                                 <li><a href="#" class="action-btn"><i
@@ -259,7 +259,7 @@
                                                 <div class="col-lg-12 col-md-12">
                                                     <div class="form-group mb-0">
                                                         <div class="address-btns">
-                                                            <button class="save-btn14 hover-btn btn-block" type="submit">Add Billing Address</button>
+                                                            <button class="save-btn14 hover-btn btn-block" id="save_billing" data-action="" type="submit">Add Billing Address</button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -416,7 +416,7 @@
                                                 <div class="col-lg-12 col-md-12">
                                                     <div class="form-group mb-0">
                                                         <div class="address-btns">
-                                                            <button class="save-btn14 hover-btn btn-block" type="submit">Add Delivery Address</button>
+                                                            <button class="save-btn14 hover-btn btn-block" type="submit" id="save_delivery" data-action="">Add Delivery Address</button>
                                                         </div>
                                                     </div>
                                                 </div>

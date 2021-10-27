@@ -143,6 +143,9 @@
 <!-- Footer End -->
 
 <!-- Javascripts -->
+<script>
+    var base = '{{URL('/')}}/';
+</script>
 <script src="{{URL('assets/js/jquery-3.3.1.min.js')}}"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
 <script src="{{URL('assets/external/bootstrap/js/bootstrap.bundle.min.js')}}"></script>

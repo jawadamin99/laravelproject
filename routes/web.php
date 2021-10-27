@@ -11,6 +11,7 @@
 |
 */
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Ajax;
 
 Route::get('/', [HomeController::class,'home']);
 Route::get('/about', [HomeController::class,'about']);
@@ -23,3 +24,4 @@ Route::get('/my_account', [HomeController::class,'my_account']);
 Route::get('/my_addresses', [HomeController::class,'my_addresses']);
 Route::post('/add_billing_address', [HomeController::class,'add_billing_address']);
 Route::post('/add_delivery_address', [HomeController::class,'add_delivery_address']);
+Route::post('/ajax/get_address', [Ajax::class,'get_address']);
