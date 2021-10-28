@@ -56,13 +56,6 @@ $(document).ready(function () {
         console.log("clicked");
     });
 });
-
-$(document).ready(function () {
-    $('form').each(function () {
-        $(this).validate();
-    });
-
-});
 // === Dropdown === //
 
 $('.ui.dropdown')
@@ -299,32 +292,6 @@ $('.team-slider').owlCarousel({
         }
     }
 });
-$("#signup_form").validate({
-    errorPlacement: function errorPlacement(error, element) {
-        element.after(error);
-    },
-    rules: {
-        UserPassword: 'required',
-        ConfirmPassword: {
-            equalTo: "#UserPassword"
-        },
-        messages: {
-            UserEmail: {
-                required: 'Please enter an email address',
-                valid: 'Please enter a valid email address'
-            },
-            UserPassword: {
-                required: 'Please enter a password',
-            },
-            ConfirmPassword: {
-                equalTo: 'Password not matched'
-            }
-        }
-    },
-    submitHandler: function (form) {
-        form.submit();
-    }
-});
 $.ajaxSetup({
     headers: {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -334,7 +301,7 @@ $.ajaxSetup({
 $(document).on("click", ".edit-billing-address", function (e) {
     var addressid = $(this).attr("data-addressid");
     if (addressid) {
-        $("#save_billing").attr("data-action","edit").attr("data-addressID",addressid);
+        $("#save_billing").attr("data-action", "edit").attr("data-addressID", addressid);
         $.ajax({
             url: base + "ajax/get_address",
             type: "POST",
@@ -355,20 +322,19 @@ $(document).on("click", ".edit-billing-address", function (e) {
                 $("#BillingCountyState").val(data.BillingCountyState);
                 $("#BillingPostCode").val(data.BillingPostCode);
                 $("#BillingCountry").val(data.BillingCountry);
-                $("#address_model").modal("show");
             }
         });
     }
 });
 
 $(document).on("click", ".add-billing-address", function (e) {
-    $("#save_billing").attr("data-action","add");
+    $("#save_billing").attr("data-action", "add");
     $("#billing_address").trigger('reset');
 });
 $(document).on("click", ".edit-delivery-address", function (e) {
     var addressid = $(this).attr("data-addressid");
     if (addressid) {
-        $("#save_delivery").attr("data-action","edit").attr("data-addressID",addressid);
+        $("#save_delivery").attr("data-action", "edit").attr("data-addressID", addressid);
         $.ajax({
             url: base + "ajax/get_address",
             type: "POST",
@@ -389,16 +355,24 @@ $(document).on("click", ".edit-delivery-address", function (e) {
                 $("#DeliveryCountyState").val(data.DeliveryCountyState);
                 $("#DeliveryPostCode").val(data.DeliveryPostCode);
                 $("#DeliveryCountry").val(data.DeliveryCountry);
-                $("#address_model_delivery").modal("show");
             }
         });
     }
 });
 
 $(document).on("click", ".add-delivery-address", function (e) {
-    $("#save_delivery").attr("data-action","add");
+    $("#save_delivery").attr("data-action", "add");
     $("#delivery_address").trigger('reset');
 });
-$(document).on("click","#save_billing",function (e) {
-
+$(document).on("click", "#save_billing", function (e) {
+    submit($(this), $('#billing_address'))
 });
+$(document).on("click", "#login_btn", function (e) {
+    submit($(this), $('#login_form'))
+});
+
+$(document).on("click", "#register_btn", function (e) {
+    submit($(this), $('#register_form'),true)
+});
+
+

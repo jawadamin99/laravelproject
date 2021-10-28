@@ -8,36 +8,26 @@
                         <div class="sign-inner">
                             <div class="form-dt">
                                 <div class="form-inpts checout-address-step">
-                                    @if ($errors->any())
-                                        <div class="alert alert-danger">
-                                            <ul>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>{{ $error }}</li>
-                                                @endforeach
-                                            </ul>
-                                        </div>
-                                    @endif
-                                    @if(session('login_msg'))
-                                        <div class="alert alert-danger">
-                                            <p>{{session('login_msg')}}</p>
-                                        </div>
-                                    @endif
                                     <form action="{{URL('login')}}" id="login_form" method="post" novalidate>
                                         @csrf
                                         <div class="form-title"><h6>Sign In</h6></div>
                                         <div class="form-group pos_rel">
-                                            <input id="UserEmail" name="UserEmail" type="email"
-                                                   placeholder="Email Address" class="form-control lgn_input required"
-                                                   value="{{old('UserEmail')}}">
-                                            <i class="uil uil-envelope lgn_icon"></i>
+                                            <label class="has-float-label validate-input" data-validate="Please Enter Email Address">
+                                                <input id="UserEmail" name="UserEmail" type="email"
+                                                       placeholder="Email Address" class="form-control validate-field"
+                                                       value="{{old('UserEmail')}}">
+                                                <span>Email Address</span>
+                                            </label>
                                         </div>
                                         <div class="form-group pos_rel">
-                                            <input id="UserPassword" name="UserPassword" type="password"
-                                                   placeholder="Password"
-                                                   class="form-control lgn_input required">
-                                            <i class="uil uil-padlock lgn_icon"></i>
+                                            <label class="has-float-label validate-input" data-validate="Please Enter Password">
+                                                <input id="UserPassword" name="UserPassword" type="password"
+                                                       placeholder="Password"
+                                                       class="form-control validate-field">
+                                                <span>Password</span>
+                                            </label>
                                         </div>
-                                        <button class="login-btn hover-btn" type="submit">Sign In</button>
+                                        <button class="login-btn hover-btn" type="button" id="login_btn">Sign In</button>
                                     </form>
                                 </div>
                                 <div class="signup-link">

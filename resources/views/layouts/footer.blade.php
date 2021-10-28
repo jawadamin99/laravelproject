@@ -147,13 +147,15 @@
     var base = '{{URL('/')}}/';
 </script>
 <script src="{{URL('assets/js/jquery-3.3.1.min.js')}}"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.js"></script>
 <script src="{{URL('assets/external/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
 <script src="{{URL('assets/external/OwlCarousel/owl.carousel.js')}}"></script>
 <script src="{{URL('assets/external/semantic/semantic.min.js')}}"></script>
 <script src="{{URL('assets/js/jquery.countdown.min.js')}}"></script>
 <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="https://malsup.github.io/jquery.form.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 <script src="{{URL('assets/js/core.js')}}"></script>
+<script src="{{URL('assets/js/forms.js')}}"></script>
 <script src="{{URL('assets/js/custom.js')}}"></script>
 <script src="{{URL('assets/js/offset_overlay.js')}}"></script>
 <script src="{{URL('assets/js/night-mode.js')}}"></script>

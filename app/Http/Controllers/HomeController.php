@@ -43,13 +43,18 @@ class HomeController extends Controller
 
     public function register_handler(Request $request)
     {
-        $request->validate([
+        $validator = $validator = \Validator::make($request->all(), [
             'BillingFirstName' => 'required|max:255',
             'BillingLastName' => 'required|max:255',
             'BillingMobile' => 'required|max:18',
             'UserEmail' => 'required|unique:customers,UserEmail|max:255',
             'UserPassword' => 'required|max:255'
         ]);
+        if ($validator->fails())
+        {
+            return response()->json(['status'=>false,'message'=>$validator->errors()->all()]);
+        }
+
         $insert_data = [
             'BillingFirstName' => $request->BillingFirstName,
             'BillingLastName' => $request->BillingLastName,
@@ -60,8 +65,11 @@ class HomeController extends Controller
             'RegisteredIP' => $request->ip()
         ];
         Customer::create($insert_data);
-        $request->session()->flash('registered_email', $request->UserEmail);
-        return view('register');
+        return response()->json(
+            [
+                'status'=>true,
+                'message'=>'Account Created, Please confirm your email address '.$request->UserEmail,
+                'link'=>URL('/login')]);
     }
 
     public function login()
@@ -74,18 +82,22 @@ class HomeController extends Controller
 
     public function login_handler(Request $request)
     {
-        $request->validate([
+        $validator = \Validator::make($request->all(), [
             'UserEmail' => 'required|max:255',
             'UserPassword' => 'required|max:255'
         ]);
 
+        if ($validator->fails())
+        {
+            return response()->json(['status'=>false,'message'=>$validator->errors()->all()]);
+        }
         try {
             UserRepository::login_request($request);
         } catch (Exception $ex) {
-            $request->session()->flash('login_msg', $ex->getMessage());
-            return redirect('/login');
+            return response()->json(['status'=>false,'message'=>$ex->getMessage()]);
         }
-        return redirect('/my_account');
+        $return = ['status'=>true,'link'=>URL('/my_account')];
+        return response()->json($return);
     }
 
     public function logout()

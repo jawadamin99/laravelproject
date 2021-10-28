@@ -18,6 +18,7 @@
           rel="stylesheet">
     <link href='{{URL('assets/external/unicons-2.0.1/css/unicons.css')}}' rel='stylesheet'>
     <link href="{{URL('assets/css/style.css')}}" rel="stylesheet">
+    <link href="{{URL('assets/css/plugins.css')}}" rel="stylesheet">
     <link href="{{URL('assets/css/responsive.css')}}" rel="stylesheet">
     <link href="{{URL('assets/css/night-mode.css')}}" rel="stylesheet">
 
@@ -26,6 +27,7 @@
     <link href="{{URL('assets/external/OwlCarousel/assets/owl.carousel.css')}}" rel="stylesheet">
     <link href="{{URL('assets/external/OwlCarousel/assets/owl.theme.default.min.css')}}" rel="stylesheet">
     <link href="{{URL('assets/external/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{URL('assets/external/semantic/semantic.min.css')}}">
     <link href="{{URL('assets/css/custom.css')}}" rel="stylesheet">
 

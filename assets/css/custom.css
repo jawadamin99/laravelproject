@@ -8,3 +8,125 @@ label.error {
     margin-bottom: 10px;
 }
 
+.form-control {
+    height: 40px;
+}
+
+.alert-validate .btn-show-pass {
+    visibility: hidden
+}
+
+.alert-validate::before {
+    content: attr(data-validate);
+    position: absolute;
+    max-width: 75%;
+    font-size: 13px;
+    border: 1px solid #c80000;
+    border-radius: 3px;
+    padding: 4px 25px 5px 10px;
+    top: 50%;
+    z-index: 1;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 12px;
+    pointer-events: none;
+    color: #c80000;
+    line-height: 1.4;
+    text-align: left;
+    visibility: hidden;
+    opacity: 0;
+    -webkit-transition: opacity .4s;
+    -o-transition: opacity .4s;
+    -moz-transition: opacity .4s;
+    transition: opacity .4s
+}
+
+.alert-validate::after {
+    content: "\f12a";
+    font-family: "Font Awesome 5 Free";
+    font-weight: 600;
+    display: block;
+    position: absolute;
+    color: #c80000;
+    top: 50%;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+    transform: translateY(-50%);
+    right: 18px
+}
+
+.alert-validate:hover:before {
+    visibility: visible;
+    opacity: 1
+}
+
+@media (max-width: 992px) {
+    .alert-validate::before {
+        visibility: visible;
+        opacity: 1
+    }
+}
+
+.spinner {
+    position: relative
+}
+
+.spinner:before {
+    content: "";
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    border-radius: 50%;
+    border: 2px solid #d1d3e0;
+    border-right: 2px solid transparent
+}
+
+.spinner:before {
+    width: 1.5rem;
+    height: 1.5rem;
+    margin-top: -.75rem
+}
+
+.spinner.spinner-right:before {
+    left: auto
+}
+
+.spinner:before {
+    -webkit-animation: animation-spinner .5s linear infinite;
+    animation: animation-spinner .5s linear infinite
+}
+
+.spinner.spinner-white:before {
+    border: 2px solid #fff;
+    border-right: 2px solid transparent
+}
+
+.spinner.spinner-right:before {
+    left: auto;
+    right: 1rem
+}
+
+.spinner.spinner-right.btn:not(.btn-block) {
+    padding-right: 3.5rem
+}
+
+@-webkit-keyframes animation-spinner {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
+
+@keyframes animation-spinner {
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg)
+    }
+}
