@@ -302,6 +302,7 @@ $(document).on("click", ".edit-billing-address", function (e) {
     var addressid = $(this).attr("data-addressid");
     if (addressid) {
         $("#save_billing").attr("data-action", "edit").attr("data-addressID", addressid);
+        $("#billing_address").attr("action", base + 'edit_billing_address');
         $.ajax({
             url: base + "ajax/get_address",
             type: "POST",
@@ -322,6 +323,8 @@ $(document).on("click", ".edit-billing-address", function (e) {
                 $("#BillingCountyState").val(data.BillingCountyState);
                 $("#BillingPostCode").val(data.BillingPostCode);
                 $("#BillingCountry").val(data.BillingCountry);
+                $("#BillingAddressID").val(data.ID);
+                $("#save_billing").text("Update Billing Address");
             }
         });
     }
@@ -329,12 +332,16 @@ $(document).on("click", ".edit-billing-address", function (e) {
 
 $(document).on("click", ".add-billing-address", function (e) {
     $("#save_billing").attr("data-action", "add");
+    $("#save_billing").attr("data-addressid", "");
+    $("#save_billing").text("Add Billing Address");
     $("#billing_address").trigger('reset');
+    $("#BillingAddressID").val('');
 });
 $(document).on("click", ".edit-delivery-address", function (e) {
     var addressid = $(this).attr("data-addressid");
     if (addressid) {
         $("#save_delivery").attr("data-action", "edit").attr("data-addressID", addressid);
+        $("#delivery_address").attr("action", base + 'edit_delivery_address');
         $.ajax({
             url: base + "ajax/get_address",
             type: "POST",
@@ -355,6 +362,8 @@ $(document).on("click", ".edit-delivery-address", function (e) {
                 $("#DeliveryCountyState").val(data.DeliveryCountyState);
                 $("#DeliveryPostCode").val(data.DeliveryPostCode);
                 $("#DeliveryCountry").val(data.DeliveryCountry);
+                $("#DeliveryAddressID").val(data.ID);
+                $("#save_delivery").text("Update Delivery Address");
             }
         });
     }
@@ -362,17 +371,23 @@ $(document).on("click", ".edit-delivery-address", function (e) {
 
 $(document).on("click", ".add-delivery-address", function (e) {
     $("#save_delivery").attr("data-action", "add");
+    $("#save_delivery").attr("data-addressid", "");
+    $("#save_delivery").text("Add Delivery Address");
     $("#delivery_address").trigger('reset');
+    $("#DeliveryAddressID").val('');
+});
+$(document).on("click", "#save_delivery", function (e) {
+    submit($(this), $('#delivery_address'), true, true, $("#address_model_delivery"));
 });
 $(document).on("click", "#save_billing", function (e) {
-    submit($(this), $('#billing_address'))
+    submit($(this), $('#billing_address'), true, true, $("#address_model"));
 });
 $(document).on("click", "#login_btn", function (e) {
     submit($(this), $('#login_form'))
 });
 
 $(document).on("click", "#register_btn", function (e) {
-    submit($(this), $('#register_form'),true)
+    submit($(this), $('#register_form'), true)
 });
 
 

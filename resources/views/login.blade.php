@@ -21,6 +21,9 @@
                                         </div>
                                         <div class="form-group pos_rel">
                                             <label class="has-float-label validate-input" data-validate="Please Enter Password">
+                                                 <span class="btn-show-pass">
+                                                    <i class="fa fa-eye"></i>
+                                                </span>
                                                 <input id="UserPassword" name="UserPassword" type="password"
                                                        placeholder="Password"
                                                        class="form-control validate-field">

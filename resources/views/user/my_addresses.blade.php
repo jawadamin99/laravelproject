@@ -145,6 +145,7 @@
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
+                                                        <input type="hidden" id="BillingAddressID" name="BillingAddressID" value="">
                                                         <label class="has-float-label validate-input">
                                                             <select class="form-control required validate-field" id="BillingTitle"
                                                                     name="BillingTitle">
@@ -225,11 +226,11 @@
                                                 </div>
                                                 <div class="col-lg-12 col-md-12">
                                                     <div class="form-group">
-                                                        <label class="has-float-label validate-input">
+                                                        <label class="has-float-label">
                                                             <input id="BillingAddress2" name="BillingAddress2"
                                                                    type="text"
                                                                    placeholder="Address Line 2"
-                                                                   class="form-control input-md validate-field">
+                                                                   class="form-control input-md">
                                                             <span>Address Line 2</span>
                                                         </label>
                                                     </div>
@@ -332,13 +333,14 @@
                         <div class="checout-address-step">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form class="" method="post" action="{{URL('/add_delivery_address')}}">
+                                    <form class="" method="post" action="{{URL('/add_delivery_address')}}" id="delivery_address">
                                     @csrf
                                     <!-- Multiple Radios (inline) -->
                                         <div class="address-fieldset">
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
+                                                        <input type="hidden" id="DeliveryAddressID" name="DeliveryAddressID" value="">
                                                         <label class="has-float-label validate-input">
                                                             <select class="form-control required" id="DeliveryTitle"
                                                                     name="DeliveryTitle">
@@ -495,7 +497,7 @@
                                                 <div class="col-lg-12 col-md-12">
                                                     <div class="form-group mb-0">
                                                         <div class="address-btns">
-                                                            <button class="save-btn14 hover-btn btn-block" type="submit" id="save_delivery" data-action="">Add Delivery Address</button>
+                                                            <button class="save-btn14 hover-btn btn-block" type="button" id="save_delivery" data-action="">Add Delivery Address</button>
                                                         </div>
                                                     </div>
                                                 </div>

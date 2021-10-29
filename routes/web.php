@@ -25,3 +25,5 @@ Route::get('/my_addresses', [HomeController::class,'my_addresses']);
 Route::post('/add_billing_address', [HomeController::class,'add_billing_address']);
 Route::post('/add_delivery_address', [HomeController::class,'add_delivery_address']);
 Route::post('/ajax/get_address', [Ajax::class,'get_address']);
+Route::post('/edit_billing_address', [HomeController::class,'edit_billing_address']);
+Route::post('/edit_delivery_address', [HomeController::class,'edit_delivery_address']);
