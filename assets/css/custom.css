@@ -11,7 +11,6 @@ label.error {
 .form-control {
     height: 40px;
 }
-
 .alert-validate .btn-show-pass {
     visibility: hidden
 }
@@ -129,4 +128,25 @@ label.error {
         -webkit-transform: rotate(360deg);
         transform: rotate(360deg)
     }
+}
+.btn-show-pass {
+    font-size: 15px;
+    color: #999;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    height: 100%;
+    top: 0;
+    right: 12px;
+    padding: 0 5px;
+    cursor: pointer;
+    -webkit-transition: background .4s;
+    -o-transition: background .4s;
+    -moz-transition: background .4s;
+    transition: background .4s;
+    z-index: 1;
 }

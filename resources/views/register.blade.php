@@ -19,51 +19,47 @@
                                         <div class="form-title"><h6>Sign Up</h6></div>
                                         <div class="form-group pos_rel">
                                             <label class="has-float-label validate-input" data-validate="Please Fix">
-                                            <input id="BillingFirstName" name="BillingFirstName" type="text"
-                                                   placeholder="First name"
-                                                   class="form-control required validate-field"
-                                                   value="{{old('BillingFirstName')}}">
+                                                <input id="BillingFirstName" name="BillingFirstName" type="text"
+                                                       placeholder="First name"
+                                                       class="form-control required validate-field"
+                                                       value="{{old('BillingFirstName')}}">
                                                 <span>First Name</span>
                                             </label>
                                         </div>
                                         <div class="form-group pos_rel">
                                             <label class="has-float-label validate-input" data-validate="Please Fix">
-                                            <input id="BillingLastName" name="BillingLastName" type="text"
-                                                   placeholder="Last name"
-                                                   class="form-control required validate-field"
-                                                   value="{{old('BillingLastName')}}">
+                                                <input id="BillingLastName" name="BillingLastName" type="text"
+                                                       placeholder="Last name"
+                                                       class="form-control required validate-field"
+                                                       value="{{old('BillingLastName')}}">
                                                 <span>Last Name</span>
                                             </label>
                                         </div>
                                         <div class="form-group pos_rel">
                                             <label class="has-float-label validate-input" data-validate="Please Fix">
-                                            <input id="UserEmail" name="UserEmail" type="email"
-                                                   placeholder="Email Address" class="form-control required validate-field"
-                                                   value="{{old('UserEmail')}}">
+                                                <input id="UserEmail" name="UserEmail" type="email"
+                                                       placeholder="Email Address" class="form-control required validate-field"
+                                                       value="{{old('UserEmail')}}">
                                                 <span>Email Address</span>
                                             </label>
                                         </div>
                                         <div class="form-group pos_rel">
                                             <label class="has-float-label validate-input" data-validate="Please Fix">
-                                            <input id="BillingMobile" name="BillingMobile" type="text"
-                                                   placeholder="Mobile Number" class="form-control required validate-field"
-                                                   value="{{old('BillingMobile')}}">
-                                            <span>Mobile Number</span>
+                                                <input id="BillingMobile" name="BillingMobile" type="text"
+                                                       placeholder="Mobile Number" class="form-control required validate-field"
+                                                       value="{{old('BillingMobile')}}">
+                                                <span>Mobile Number</span>
                                             </label>
                                         </div>
                                         <div class="form-group pos_rel">
                                             <label class="has-float-label validate-input" data-validate="Please Fix">
-                                            <input id="UserPassword" name="UserPassword" type="password"
-                                                   placeholder="Password"
-                                                   class="form-control required validate-field">
+                                                <span class="btn-show-pass">
+                                                    <i class="fa fa-eye"></i>
+                                                </span>
+                                                <input id="UserPassword" name="UserPassword" type="password"
+                                                       placeholder="Password"
+                                                       class="form-control required validate-field">
                                                 <span>Password</span>
-                                            </label>
-                                        </div>
-                                        <div class="form-group pos_rel">
-                                            <label class="has-float-label validate-input" data-validate="Please Fix">
-                                            <input id="ConfirmPassword" name="ConfirmPassword" type="password"
-                                                   placeholder="Confirm Password" class="form-control required validate-field">
-                                                <span>Confirm Password</span>
                                             </label>
                                         </div>
                                         <button class="login-btn hover-btn" type="button" id="register_btn">Sign Up</button>
