@@ -398,6 +398,7 @@
                     <li class="ui dropdown">
                         @if(!session('logged_in'))
                             <a href="#" class="opts_account">
+                                <img src="{{URL('assets/images/avatar/img-21.jpg')}}" alt="">
                                 <span class="user__name">Login</span>
                                 <i class="uil uil-angle-down"></i>
                             </a>
@@ -409,7 +410,7 @@
                             </div>
                         @else
                             <a href="#" class="opts_account">
-                                <img src="{{URL('assets/images/avatar/img-5.jpg')}}" alt="">
+                                <img src="{{URL('assets/images/avatar/img-21.jpg')}}" alt="">
                                 <span class="user__name">Hi {{session('UserData.BillingFirstName')}}</span>
                                 <i class="uil uil-angle-down"></i>
                             </a>

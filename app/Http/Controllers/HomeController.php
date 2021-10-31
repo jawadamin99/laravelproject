@@ -8,6 +8,7 @@ use App\Models\DeliveryAddress;
 use App\Models\User;
 use App\Repository\UserRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 use Illuminate\Support\Facades\Session;
@@ -188,21 +189,21 @@ class HomeController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => false, 'message' => $validator->errors()->all()]);
         }
-
-        $billingAddress = BillingAddress::find($request->BillingAddressID);
-        $billingAddress->BillingTitle = $request->BillingTitle;
-        $billingAddress->BillingFirstName = $request->BillingFirstName;
-        $billingAddress->BillingLastName = $request->BillingLastName;
-        $billingAddress->BillingCompanyName = $request->BillingCompanyName;
-        $billingAddress->BillingMobile = $request->BillingMobile;
-        $billingAddress->BillingAddress1 = $request->BillingAddress1;
-        $billingAddress->BillingAddress2 = $request->BillingAddress2;
-        $billingAddress->BillingEmail = $request->BillingEmail;
-        $billingAddress->BillingTownCity = $request->BillingTownCity;
-        $billingAddress->BillingCountyState = $request->BillingCountyState;
-        $billingAddress->BillingPostCode = $request->BillingPostCode;
-        $billingAddress->BillingCountry = $request->BillingCountry;
-        $billingAddress->save();
+        $billingAddress = [];
+        $billingAddress['BillingTitle'] = $request->BillingTitle;
+        $billingAddress['BillingFirstName'] = $request->BillingFirstName;
+        $billingAddress['BillingLastName'] = $request->BillingLastName;
+        $billingAddress['BillingCompanyName'] = $request->BillingCompanyName;
+        $billingAddress['BillingMobile'] = $request->BillingMobile;
+        $billingAddress['BillingAddress1'] = $request->BillingAddress1;
+        $billingAddress['BillingAddress2'] = $request->BillingAddress2;
+        $billingAddress['BillingEmail'] = $request->BillingEmail;
+        $billingAddress['BillingTownCity'] = $request->BillingTownCity;
+        $billingAddress['BillingCountyState'] = $request->BillingCountyState;
+        $billingAddress['BillingPostCode'] = $request->BillingPostCode;
+        $billingAddress['BillingCountry'] = $request->BillingCountry;
+        BillingAddress::where('ID', $request->BillingAddressID)
+            ->update($billingAddress);
         return response()->json(['status' => true, 'message' => 'Billing address has been updated']);
     }
 
@@ -273,22 +274,33 @@ class HomeController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => false, 'message' => $validator->errors()->all()]);
         }
-
-        $deliveryAddress = DeliveryAddress::find($request->DeliveryAddressID);
-        $deliveryAddress->DeliveryTitle = $request->DeliveryTitle;
-        $deliveryAddress->DeliveryFirstName = $request->DeliveryFirstName;
-        $deliveryAddress->DeliveryLastName = $request->DeliveryLastName;
-        $deliveryAddress->DeliveryCompanyName = $request->DeliveryCompanyName;
-        $deliveryAddress->DeliveryMobile = $request->DeliveryMobile;
-        $deliveryAddress->DeliveryAddress1 = $request->DeliveryAddress1;
-        $deliveryAddress->DeliveryAddress2 = $request->DeliveryAddress2;
-        $deliveryAddress->DeliveryEmail = $request->DeliveryEmail;
-        $deliveryAddress->DeliveryTownCity = $request->DeliveryTownCity;
-        $deliveryAddress->DeliveryCountyState = $request->DeliveryCountyState;
-        $deliveryAddress->DeliveryPostCode = $request->DeliveryPostCode;
-        $deliveryAddress->DeliveryCountry = $request->DeliveryCountry;
-        $deliveryAddress->save();
+        $deliveryAddress = [];
+        $deliveryAddress['DeliveryTitle'] = $request->DeliveryTitle;
+        $deliveryAddress['DeliveryFirstName'] = $request->DeliveryFirstName;
+        $deliveryAddress['DeliveryLastName'] = $request->DeliveryLastName;
+        $deliveryAddress['DeliveryCompanyName'] = $request->DeliveryCompanyName;
+        $deliveryAddress['DeliveryMobile'] = $request->DeliveryMobile;
+        $deliveryAddress['DeliveryAddress1'] = $request->DeliveryAddress1;
+        $deliveryAddress['DeliveryAddress2'] = $request->DeliveryAddress2;
+        $deliveryAddress['DeliveryEmail'] = $request->DeliveryEmail;
+        $deliveryAddress['DeliveryTownCity'] = $request->DeliveryTownCity;
+        $deliveryAddress['DeliveryCountyState'] = $request->DeliveryCountyState;
+        $deliveryAddress['DeliveryPostCode'] = $request->DeliveryPostCode;
+        $deliveryAddress['DeliveryCountry'] = $request->DeliveryCountry;
+        DeliveryAddress::where('ID', $request->DeliveryAddressID)
+            ->update($deliveryAddress);
         return response()->json(['status' => true, 'message' => 'Delivery address has been updated']);
     }
 
+    public function delete_address(Request $request)
+    {
+        $addresstype = $request->addresstype;
+        $addressID = $request->addressid;
+        if ($addresstype == "billing") {
+            BillingAddress::where('ID', $addressID)->delete();
+        } else {
+            DeliveryAddress::where('ID', $addressID)->delete();
+        }
+        return response()->json(['status' => true, 'message' => $addresstype . ' address has been deleted']);
+    }
 }

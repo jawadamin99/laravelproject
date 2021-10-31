@@ -51,32 +51,43 @@
                                             <h4>Billing Addresses</h4>
                                         </div>
                                         <div class="address-body">
-                                            <a href="#" class="add-address add-billing-address hover-btn" data-toggle="modal"
+                                            <a href="#" class="add-address add-billing-address hover-btn"
+                                               data-toggle="modal"
                                                data-target="#address_model">Add Billing Address</a>
-                                            @isset($UserData->billingAddresses)
-                                                @foreach($UserData->billingAddresses as $address)
-                                                    <div class="address-item">
-                                                        <div class="address-dt-all">
-                                                            <h4>{{$address->BillingTitle . ' '.$address->BillingFirstName . ' ' . $address->BillingLastName}}</h4>
-                                                            <p>
-                                                                <strong>Company Name:</strong> {{$address->BillingCompanyName}}
-                                                            </p>
-                                                            <p>{{$address->BillingEmail}}</p>
-                                                            <p>{{$address->BillingAddress1 . ' ' . $address->BillingAddress2}}</p>
-                                                            <p>{{$address->BillingTownCity}}, {{$address->BillingCountyState}}, {{$address->BillingPostCode}}</p>
-                                                            <p>{{$address->BillingMobile}}, {{$address->BillingCountry}}</p>
-                                                            <ul class="action-btns">
-                                                                <li>
-                                                                    <a href="javascript:void(0);" class="action-btn edit-billing-address" data-addressid="{{$address->ID}}" data-toggle="modal" data-target="#address_model">
-                                                                        <i class="uil uil-edit"></i></a>
-                                                                </li>
-                                                                <li><a href="javascript:void(0);" class="action-btn"><i
-                                                                            class="uil uil-trash-alt"></i></a></li>
-                                                            </ul>
-                                                        </div>
+                                            @forelse($UserData->billingAddresses as $address)
+                                                <div class="address-item">
+                                                    <div class="address-dt-all">
+                                                        <h4>{{$address->BillingTitle . ' '.$address->BillingFirstName . ' ' . $address->BillingLastName}}</h4>
+                                                        <p>
+                                                            <strong>Company
+                                                                Name:</strong> {{$address->BillingCompanyName}}
+                                                        </p>
+                                                        <p>{{$address->BillingEmail}}</p>
+                                                        <p>{{$address->BillingAddress1 . ' ' . $address->BillingAddress2}}</p>
+                                                        <p>{{$address->BillingTownCity}}
+                                                            , {{$address->BillingCountyState}}
+                                                            , {{$address->BillingPostCode}}</p>
+                                                        <p>{{$address->BillingMobile}}
+                                                            , {{$address->BillingCountry}}</p>
+                                                        <ul class="action-btns">
+                                                            <li>
+                                                                <a href="javascript:void(0);"
+                                                                   class="action-btn edit-billing-address"
+                                                                   data-addressid="{{$address->ID}}"
+                                                                   data-toggle="modal" data-target="#address_model">
+                                                                    <i class="uil uil-edit"></i></a>
+                                                            </li>
+                                                            <li><a href="javascript:void(0);"
+                                                                   class="action-btn delete_address"
+                                                                   data-addresstype="billing"
+                                                                   data-addressid="{{$address->ID}}"><i
+                                                                        class="uil uil-trash-alt"></i></a></li>
+                                                        </ul>
                                                     </div>
-                                                @endforeach
-                                            @endisset
+                                                </div>
+                                            @empty
+                                                <div class="address-item"><p>No billing address added</p></div>.
+                                            @endforelse
                                         </div>
                                     </div>
                                 </div>
@@ -86,32 +97,44 @@
                                             <h4>Delivery Addresses</h4>
                                         </div>
                                         <div class="address-body">
-                                            <a href="#" class="add-address add-delivery-address hover-btn" data-toggle="modal"
+                                            <a href="#" class="add-address add-delivery-address hover-btn"
+                                               data-toggle="modal"
                                                data-target="#address_model_delivery">Add Delivery Address</a>
-                                            @isset($UserData->deliveryAddresses)
-                                                @foreach($UserData->deliveryAddresses as $address)
-                                                    <div class="address-item">
-                                                        <div class="address-dt-all">
-                                                            <h4>{{$address->DeliveryTitle . ' '.$address->DeliveryFirstName . ' ' . $address->DeliveryLastName}}</h4>
-                                                            <p>
-                                                                <strong>Company Name:</strong> {{$address->DeliveryCompanyName}}
-                                                            </p>
-                                                            <p>{{$address->DeliveryEmail}}</p>
-                                                            <p>{{$address->DeliveryAddress1 . ' ' . $address->DeliveryAddress2}}</p>
-                                                            <p>{{$address->DeliveryTownCity}}, {{$address->DeliveryCountyState}}, {{$address->DeliveryPostCode}}</p>
-                                                            <p>{{$address->DeliveryMobile}}, {{$address->DeliveryCountry}}</p>
-                                                            <ul class="action-btns">
-                                                                <li>
-                                                                    <a href="javascript:void(0);" class="action-btn edit-delivery-address" data-addressid="{{$address->ID}}" data-toggle="modal" data-target="#address_model_delivery"><i
-                                                                            class="uil uil-edit"></i></a>
-                                                                </li>
-                                                                <li><a href="#" class="action-btn"><i
-                                                                            class="uil uil-trash-alt"></i></a></li>
-                                                            </ul>
-                                                        </div>
+                                            @forelse($UserData->deliveryAddresses as $address)
+                                                <div class="address-item">
+                                                    <div class="address-dt-all">
+                                                        <h4>{{$address->DeliveryTitle . ' '.$address->DeliveryFirstName . ' ' . $address->DeliveryLastName}}</h4>
+                                                        <p>
+                                                            <strong>Company
+                                                                Name:</strong> {{$address->DeliveryCompanyName}}
+                                                        </p>
+                                                        <p>{{$address->DeliveryEmail}}</p>
+                                                        <p>{{$address->DeliveryAddress1 . ' ' . $address->DeliveryAddress2}}</p>
+                                                        <p>{{$address->DeliveryTownCity}}
+                                                            , {{$address->DeliveryCountyState}}
+                                                            , {{$address->DeliveryPostCode}}</p>
+                                                        <p>{{$address->DeliveryMobile}}
+                                                            , {{$address->DeliveryCountry}}</p>
+                                                        <ul class="action-btns">
+                                                            <li>
+                                                                <a href="javascript:void(0);"
+                                                                   class="action-btn edit-delivery-address"
+                                                                   data-addressid="{{$address->ID}}"
+                                                                   data-toggle="modal"
+                                                                   data-target="#address_model_delivery"><i
+                                                                        class="uil uil-edit"></i></a>
+                                                            </li>
+                                                            <li><a href="javascript:void(0);"
+                                                                   class="action-btn delete_address"
+                                                                   data-addresstype="delivery"
+                                                                   data-addressid="{{$address->ID}}"><i
+                                                                        class="uil uil-trash-alt"></i></a></li>
+                                                        </ul>
                                                     </div>
-                                                @endforeach
-                                            @endisset
+                                                </div>
+                                            @empty
+                                                <div class="address-item"><p>No delivery address added</p></div>.
+                                            @endforelse
                                         </div>
                                     </div>
                                 </div>
@@ -122,7 +145,8 @@
             </div>
         </div>
     </div>
-    <div id="address_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
+    <div id="address_model" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog"
+         aria-modal="false">
         <div class="modal-dialog category-area" role="document">
             <div class="category-area-inner">
                 <div class="modal-header">
@@ -132,22 +156,25 @@
                 </div>
                 <div class="category-model-content modal-content">
                     <div class="cate-header">
-                        <h4>Add New Billing Address</h4>
+                        <h4 class="modal_heading">Add New Billing Address</h4>
                     </div>
                     <div class="add-address-form">
                         <div class="checout-address-step">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form class="" method="post" action="{{URL('/add_billing_address')}}" id="billing_address">
+                                    <form class="" method="post" action="{{URL('/add_billing_address')}}"
+                                          id="billing_address">
                                     @csrf
                                     <!-- Multiple Radios (inline) -->
                                         <div class="address-fieldset">
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <input type="hidden" id="BillingAddressID" name="BillingAddressID" value="">
+                                                        <input type="hidden" id="BillingAddressID"
+                                                               name="BillingAddressID" value="">
                                                         <label class="has-float-label validate-input">
-                                                            <select class="form-control required validate-field" id="BillingTitle"
+                                                            <select class="form-control required validate-field"
+                                                                    id="BillingTitle"
                                                                     name="BillingTitle">
                                                                 <option value="Mr.">Mr.</option>
                                                                 <option value="Mrs.">Mrs.</option>
@@ -204,7 +231,8 @@
                                                 </div>
                                                 <div class="col-lg-12 col-md-12">
                                                     <div class="form-group">
-                                                        <label class="has-float-label validate-input" data-validate="Please enter valid email">
+                                                        <label class="has-float-label validate-input"
+                                                               data-validate="Please enter valid email">
                                                             <input id="BillingEmail" name="BillingEmail"
                                                                    type="email"
                                                                    placeholder="Email Address"
@@ -273,7 +301,8 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="has-float-label validate-input">
-                                                            <select class="form-control required validate-field" id="BillingCountry"
+                                                            <select class="form-control required validate-field"
+                                                                    id="BillingCountry"
                                                                     name="BillingCountry">
                                                                 <option value="">Select Country</option>
                                                                 <optgroup label="European Union">
@@ -302,7 +331,10 @@
                                                 <div class="col-lg-12 col-md-12">
                                                     <div class="form-group mb-0">
                                                         <div class="address-btns">
-                                                            <button class="save-btn14 hover-btn btn-block" id="save_billing" data-action="" type="button">Add Billing Address</button>
+                                                            <button class="save-btn14 hover-btn btn-block"
+                                                                    id="save_billing" data-action="" type="button">Add
+                                                                Billing Address
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -317,7 +349,8 @@
             </div>
         </div>
     </div>
-    <div id="address_model_delivery" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog" aria-modal="false">
+    <div id="address_model_delivery" class="header-cate-model main-gambo-model modal fade" tabindex="-1" role="dialog"
+         aria-modal="false">
         <div class="modal-dialog category-area" role="document">
             <div class="category-area-inner">
                 <div class="modal-header">
@@ -327,20 +360,22 @@
                 </div>
                 <div class="category-model-content modal-content">
                     <div class="cate-header">
-                        <h4>Add New Delivery Address</h4>
+                        <h4 class="modal_heading">Add New Delivery Address</h4>
                     </div>
                     <div class="add-address-form">
                         <div class="checout-address-step">
                             <div class="row">
                                 <div class="col-lg-12">
-                                    <form class="" method="post" action="{{URL('/add_delivery_address')}}" id="delivery_address">
+                                    <form class="" method="post" action="{{URL('/add_delivery_address')}}"
+                                          id="delivery_address">
                                     @csrf
                                     <!-- Multiple Radios (inline) -->
                                         <div class="address-fieldset">
                                             <div class="row">
                                                 <div class="col-md-3">
                                                     <div class="form-group">
-                                                        <input type="hidden" id="DeliveryAddressID" name="DeliveryAddressID" value="">
+                                                        <input type="hidden" id="DeliveryAddressID"
+                                                               name="DeliveryAddressID" value="">
                                                         <label class="has-float-label validate-input">
                                                             <select class="form-control required" id="DeliveryTitle"
                                                                     name="DeliveryTitle">
@@ -469,7 +504,8 @@
                                                 <div class="col-md-12">
                                                     <div class="form-group">
                                                         <label class="has-float-label validate-input">
-                                                            <select class="form-control required validate-field" id="DeliveryCountry"
+                                                            <select class="form-control required validate-field"
+                                                                    id="DeliveryCountry"
                                                                     name="DeliveryCountry">
                                                                 <option value="">Select Country</option>
                                                                 <optgroup label="European Union">
@@ -497,7 +533,10 @@
                                                 <div class="col-lg-12 col-md-12">
                                                     <div class="form-group mb-0">
                                                         <div class="address-btns">
-                                                            <button class="save-btn14 hover-btn btn-block" type="button" id="save_delivery" data-action="">Add Delivery Address</button>
+                                                            <button class="save-btn14 hover-btn btn-block" type="button"
+                                                                    id="save_delivery" data-action="">Add Delivery
+                                                                Address
+                                                            </button>
                                                         </div>
                                                     </div>
                                                 </div>

@@ -150,3 +150,6 @@ label.error {
     transition: background .4s;
     z-index: 1;
 }
+.action-btn {
+    font-size: 20px;
+}

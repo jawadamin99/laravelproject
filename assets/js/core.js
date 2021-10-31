@@ -303,6 +303,7 @@ $(document).on("click", ".edit-billing-address", function (e) {
     if (addressid) {
         $("#save_billing").attr("data-action", "edit").attr("data-addressID", addressid);
         $("#billing_address").attr("action", base + 'edit_billing_address');
+        $("#address_model").find(".modal_heading").text("Update Billing Address");
         $.ajax({
             url: base + "ajax/get_address",
             type: "POST",
@@ -336,12 +337,14 @@ $(document).on("click", ".add-billing-address", function (e) {
     $("#save_billing").text("Add Billing Address");
     $("#billing_address").trigger('reset');
     $("#BillingAddressID").val('');
+    $("#address_model").find(".modal_heading").text("Add New Billing Address");
 });
 $(document).on("click", ".edit-delivery-address", function (e) {
     var addressid = $(this).attr("data-addressid");
     if (addressid) {
         $("#save_delivery").attr("data-action", "edit").attr("data-addressID", addressid);
         $("#delivery_address").attr("action", base + 'edit_delivery_address');
+        $("#address_model_delivery").find(".modal_heading").text("Update Delivery Address");
         $.ajax({
             url: base + "ajax/get_address",
             type: "POST",
@@ -375,6 +378,8 @@ $(document).on("click", ".add-delivery-address", function (e) {
     $("#save_delivery").text("Add Delivery Address");
     $("#delivery_address").trigger('reset');
     $("#DeliveryAddressID").val('');
+    $("#address_model_delivery").find(".modal_heading").text("Add New Delivery Address");
+
 });
 $(document).on("click", "#save_delivery", function (e) {
     submit($(this), $('#delivery_address'), true, true, $("#address_model_delivery"));
@@ -390,4 +395,34 @@ $(document).on("click", "#register_btn", function (e) {
     submit($(this), $('#register_form'), true)
 });
 
+$(".delete_address").click(function (e) {
+    var addresstype = $(this).data("addresstype");
+    var addressID = $(this).data("addressid");
+
+    swal({
+        title: 'Delete ' + addresstype + ' address?',
+        text: 'Are you sure to delete this ' + addresstype + ' address?',
+        icon: "warning",
+        buttons: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: base + "delete_address",
+                type: "POST",
+                data: {
+                    addressid: addressID,
+                    addresstype: addresstype
+                },
+                success: function (data) {
+                    if (data.status) {
+                        swal("Address Deleted", "The address has been deleted", "success");
+                        setTimeout(function(e){
+                            location.reload();
+                        },500);
+                    }
+                }
+            });
+        }
+    })
+});
 
