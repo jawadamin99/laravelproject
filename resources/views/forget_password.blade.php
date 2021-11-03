@@ -8,7 +8,7 @@
                         <div class="sign-inner">
                             <div class="form-dt">
                                 <div class="form-inpts checout-address-step">
-                                    <form action="{{URL('forget_password')}}" id="forget_password_form" method="post" novalidate>
+                                    <form action="{{URL('forget_password_handler')}}" id="forget_password_form" method="post" novalidate>
                                         @csrf
                                         <div class="form-title"><h6>Forgot Password?</h6></div>
                                         <div class="form-group pos_rel">
