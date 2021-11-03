@@ -391,6 +391,10 @@ $(document).on("click", "#login_btn", function (e) {
     submit($(this), $('#login_form'))
 });
 
+$(document).on("click", "#forget_password_btn", function (e) {
+    submit($(this), $('#forget_password_form'),true)
+});
+
 $(document).on("click", "#register_btn", function (e) {
     submit($(this), $('#register_form'), true)
 });

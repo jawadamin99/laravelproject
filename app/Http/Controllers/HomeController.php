@@ -303,4 +303,27 @@ class HomeController extends Controller
         }
         return response()->json(['status' => true, 'message' => $addresstype . ' address has been deleted']);
     }
+
+    public function forget_password()
+    {
+        return view('forget_password');
+    }
+
+    public function forget_password_handler(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'UserEmail' => 'required|max:255',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(['status' => false, 'message' => $validator->errors()->all()]);
+        }
+        try {
+            UserRepository::forget_password($request);
+        } catch (Exception $ex) {
+            return response()->json(['status' => false, 'message' => $ex->getMessage()]);
+        }
+        $return = ['status' => true,'message'=>'Please check your email for further instructions', 'link' => URL('/login')];
+        return response()->json($return);
+    }
 }

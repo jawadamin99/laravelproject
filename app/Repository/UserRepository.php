@@ -50,4 +50,15 @@ class UserRepository
         return false;
     }
 
+    public static function forget_password($data)
+    {
+        $user = Customer::where([
+                'UserEmail'=>$data->UserEmail,
+                'UserTypeID'=>14]
+        )->get()->first();
+        if(!$user)
+        {
+            throw new Exception("No account found against provided email");
+        }
+    }
 }
