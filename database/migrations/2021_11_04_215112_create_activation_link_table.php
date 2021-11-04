@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ForgetPasswordToken extends Migration
+class CreateActivationLinkTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class ForgetPasswordToken extends Migration
      */
     public function up()
     {
-        Schema::create('password_reset_tokens', function (Blueprint $table) {
+        Schema::create('account_activation_links', function (Blueprint $table) {
             $table->bigIncrements('ID');
             $table->bigInteger('UserID');
             $table->string('UserEmail');
-            $table->string('ResetToken');
+            $table->string('ActivationLink');
             $table->timestamp('CreatedAt')->useCurrent();
         });
     }
@@ -29,6 +29,6 @@ class ForgetPasswordToken extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('password_reset_tokens');
+        Schema::dropIfExists('account_activation_links');
     }
 }

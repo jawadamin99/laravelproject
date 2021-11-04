@@ -1,7 +1,7 @@
 function validate(a) {
-    var name_fields = ['BillingFirstName','BillingLastName','DeliveryFirstName','DeliveryLastName'];
-    var email_fields = ['UserEmail','BillingEmail','DeliveryEmail'];
-    var phone_fields = ['BillingMobile','DeliveryMobile'];
+    var name_fields = ['BillingFirstName', 'BillingLastName', 'DeliveryFirstName', 'DeliveryLastName'];
+    var email_fields = ['UserEmail', 'BillingEmail', 'DeliveryEmail'];
+    var phone_fields = ['BillingMobile', 'DeliveryMobile'];
     if ("email" == $(a).attr("type") || email_fields.includes($(a).attr("name"))) {
         if (null == $(a).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/)) return !1
     } else if ("name" == $(a).attr("name") || name_fields.includes($(a).attr("name"))) {
@@ -141,7 +141,11 @@ function submit(btn, form, alert = false, reload = false, modal = false) {
                 } else {
                     toastr.error(response.message);
                 }
-            }
+            },
+            error: function (data) {
+                swal("Server Error - Code " + data.status,data.responseJSON.message + "\n in " + data.responseJSON.file + " at line " + data.responseJSON.line, "error");
+                btnRelease(btn);
+            },
         });
     }
 }

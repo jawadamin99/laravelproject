@@ -11,6 +11,11 @@
                                     <form action="{{URL('forget_password_handler')}}" id="forget_password_form" method="post" novalidate>
                                         @csrf
                                         <div class="form-title"><h6>Forgot Password?</h6></div>
+                                        @if(session('error_message'))
+                                            <div class="alert alert-danger">
+                                                <p>{{session('error_message')}}</p>
+                                            </div>
+                                        @endif
                                         <div class="form-group pos_rel">
                                             <label class="has-float-label validate-input" data-validate="Please Enter Email Address">
                                                 <input id="UserEmail" name="UserEmail" type="email"

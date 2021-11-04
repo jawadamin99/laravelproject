@@ -2,15 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\AccountRegistered;
 use App\Models\BillingAddress;
 use App\Models\Customer;
 use App\Models\DeliveryAddress;
 use App\Models\User;
 use App\Repository\UserRepository;
+use Cassandra\Custom;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Exception;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
@@ -65,6 +68,17 @@ class HomeController extends Controller
             'RegisteredIP' => $request->ip()
         ];
         Customer::create($insert_data);
+        $customer = Customer::where('UserEmail', $request->UserEmail)->get()->first();
+        $activation_token = md5($customer->UserID . '-' . mt_rand(0, 9999));
+        $insert_array = [
+            'UserEmail' => $customer->UserEmail,
+            'UserID' => $customer->UserID,
+            'ActivationLink' => $activation_token,
+        ];
+        DB::table('account_activation_links')->where('UserID', '=', $customer->UserID)->delete();
+        DB::table('account_activation_links')->insert($insert_array);
+
+        Mail::to($request->UserEmail)->send(new AccountRegistered($customer));
         return response()->json(
             [
                 'status' => true,
@@ -323,7 +337,40 @@ class HomeController extends Controller
         } catch (Exception $ex) {
             return response()->json(['status' => false, 'message' => $ex->getMessage()]);
         }
-        $return = ['status' => true,'message'=>'Please check your email for further instructions', 'link' => URL('/login')];
+        $return = ['status' => true, 'message' => 'Please check your email for further instructions', 'link' => URL('/login')];
         return response()->json($return);
+    }
+
+    public function change_password($token)
+    {
+        $token = explode('-', $token);
+        $resetToken = $token[0];
+        $userID = base64_decode($token[1]);
+        $token_data = DB::table('password_reset_tokens')
+            ->where([
+                ['UserID', '=', $userID],
+                ['ResetToken', '=', $resetToken]
+            ])->get()->first();
+        if (!$token_data) {
+            Session::flash('error_message', 'The password reset link has expired, please send a password reset request again');
+            return redirect('/forget_password');
+        }
+        $requestTime = strtotime($token_data->CreatedAt);
+        if (time() > $requestTime + 60 * 60 * 24) {
+            Session::flash('error_message', 'The password reset link has expired, please send a password reset request again');
+            return redirect('/forget_password');
+        }
+        dd($token_data);
+    }
+
+    public function activate_account($token)
+    {
+        $token_data = DB::table('account_activation_links')
+            ->where('ActivationLink', '=', $token)->get()->first();
+        if (!$token_data) {
+            Session::flash('error_message', 'The activation Link has expired');
+            return redirect('/forget_password');
+        }
+        dd($token_data);
     }
 }

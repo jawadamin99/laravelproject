@@ -2,10 +2,12 @@
 
 namespace App\Repository;
 
+use App\Mail\ForgetPassword;
 use App\Models\Customer;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Exception;
 use Illuminate\Support\Facades\URL;
@@ -70,12 +72,6 @@ class UserRepository
         ];
         DB::table('password_reset_tokens')->where('UserID', '=', $user->UserID)->delete();
         DB::table('password_reset_tokens')->insert($insert_array);
-
-        $newPhrase = "<p>Dear Customer, You have requested to change password. Please click on the below link to reset the password within 24 hours of time</p>
-        <p>After 24 hours, the link will be expired and you have to request for another link</p>";
-        $newPhrase .= route('change_password').'/'.$reset_token.'-'.base64_encode($user->UserID);
-
-        echo $newPhrase;exit;
-
+        Mail::to($user->UserEmail)->send(new ForgetPassword($user));
     }
 }

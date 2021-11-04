@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Customer extends Model
 {
@@ -19,5 +20,13 @@ class Customer extends Model
     public function deliveryAddresses()
     {
         return $this->hasMany(DeliveryAddress::class,$this->primaryKey);
+    }
+    public function resetToken($UserID)
+    {
+        return DB::table('password_reset_tokens')->where('UserID', '=', $UserID)->get()->first()->ResetToken;
+    }
+    public function activationLink($UserID)
+    {
+        return DB::table('account_activation_links')->where('UserID', '=', $UserID)->get()->first()->ActivationLink;
     }
 }

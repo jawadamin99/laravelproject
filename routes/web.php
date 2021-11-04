@@ -30,4 +30,6 @@ Route::post('/ajax/get_address', [Ajax::class,'get_address']);
 Route::post('/edit_billing_address', [HomeController::class,'edit_billing_address']);
 Route::post('/edit_delivery_address', [HomeController::class,'edit_delivery_address']);
 Route::post('/delete_address', [HomeController::class,'delete_address']);
-Route::get('/change_password', [HomeController::class,'change_password'])->name('change_password');
+Route::get('/change_password/{token}', [HomeController::class,'change_password'])->name('change_password');
+Route::get('/activate_account/{token}', [HomeController::class,'activate_account'])->name('activate_account');
+
