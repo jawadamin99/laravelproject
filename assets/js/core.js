@@ -392,11 +392,14 @@ $(document).on("click", "#login_btn", function (e) {
 });
 
 $(document).on("click", "#forget_password_btn", function (e) {
-    submit($(this), $('#forget_password_form'),true,false)
+    submit($(this), $('#forget_password_form'), true, false)
 });
 
 $(document).on("click", "#register_btn", function (e) {
     submit($(this), $('#register_form'), true)
+});
+$(document).on("click", "#change_password_btn", function (e) {
+    submit($(this), $('#change_password_form'), true)
 });
 
 $(".delete_address").click(function (e) {
@@ -420,9 +423,9 @@ $(".delete_address").click(function (e) {
                 success: function (data) {
                     if (data.status) {
                         swal("Address Deleted", "The address has been deleted", "success");
-                        setTimeout(function(e){
+                        setTimeout(function (e) {
                             location.reload();
-                        },500);
+                        }, 500);
                     }
                 }
             });

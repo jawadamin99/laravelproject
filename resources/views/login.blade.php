@@ -11,11 +11,15 @@
                                     <form action="{{URL('login')}}" id="login_form" method="post" novalidate>
                                         @csrf
                                         <div class="form-title"><h6>Sign In</h6></div>
+                                        @if(session('success_message'))
+                                            <div class="alert alert-success">
+                                                <p>{{session('success_message')}}</p>
+                                            </div>
+                                        @endif
                                         <div class="form-group pos_rel">
                                             <label class="has-float-label validate-input" data-validate="Please Enter Email Address">
                                                 <input id="UserEmail" name="UserEmail" type="email"
-                                                       placeholder="Email Address" class="form-control validate-field"
-                                                       value="{{old('UserEmail')}}">
+                                                       placeholder="Email Address" class="form-control validate-field">
                                                 <span>Email Address</span>
                                             </label>
                                         </div>

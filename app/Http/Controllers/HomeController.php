@@ -343,6 +343,7 @@ class HomeController extends Controller
 
     public function change_password($token)
     {
+        $token_string = $token;
         $token = explode('-', $token);
         $resetToken = $token[0];
         $userID = base64_decode($token[1]);
@@ -360,7 +361,9 @@ class HomeController extends Controller
             Session::flash('error_message', 'The password reset link has expired, please send a password reset request again');
             return redirect('/forget_password');
         }
-        dd($token_data);
+        $userdata = Customer::find($token_data->UserID);
+        $userdata->ResetToken = $token_string;
+        return view('user.reset_password')->with('UserData', $userdata);
     }
 
     public function activate_account($token)
@@ -371,6 +374,33 @@ class HomeController extends Controller
             Session::flash('error_message', 'The activation Link has expired');
             return redirect('/forget_password');
         }
-        dd($token_data);
+        try {
+            UserRepository::activate_account($token_data);
+        } catch (Exception $ex) {
+            Session::flash('error_message', $ex->getMessage());
+            return redirect('/forget_password');
+        }
+        Session::flash('success_message', "Your account is activated. You can now login");
+        return redirect('login');
+    }
+
+    public function change_password_handler(Request $request)
+    {
+        $validator = $validator = \Validator::make($request->all(), [
+            'UserPassword' => 'required|max:255',
+            'ConfirmPassword' => 'required|max:255'
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['status' => false, 'message' => $validator->errors()->all()]);
+        }
+        if ($request->UserPassword !== $request->ConfirmPassword) {
+            return response()->json(['status' => false, 'message' => "Password Not Matched. Try again"]);
+        }
+        try {
+            UserRepository::change_password($request);
+        } catch (Exception $ex) {
+            return response()->json(['status' => false, 'message' => $ex->getMessage()]);
+        }
+        return response()->json(['status' => true, 'message' => "The Password is changed. You can now login", 'link' =>route('login')]);
     }
 }

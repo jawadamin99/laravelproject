@@ -8,8 +8,12 @@ function validate(a) {
         if (null == $(a).val().trim().match(/^[a-z ,.'-]+$/i)) return !1
     } else if (phone_fields.includes($(a).attr("name"))) {
         if (null == $(a).val().trim().match(/[0-9]/)) return !1
+    } else if ("ConfirmPassword" == $(a).attr("name")) {
+        if ($("#UserPassword").is(':visible')) {
+            if ($("#UserPassword").val() != $(a).val()) return !1
+        }
     } else if ("password" == $(a).attr("type") || "password" == $(a).attr("name")) {
-        if (2 >= $(a).val().trim().length) return !1
+        if (5 >= $(a).val().trim().length) return !1
     } else if ("" == $(a).val().trim()) return !1
 }
 
@@ -143,7 +147,7 @@ function submit(btn, form, alert = false, reload = false, modal = false) {
                 }
             },
             error: function (data) {
-                swal("Server Error - Code " + data.status,data.responseJSON.message + "\n in " + data.responseJSON.file + " at line " + data.responseJSON.line, "error");
+                swal("Server Error - Code " + data.status, data.responseJSON.message + "\n in " + data.responseJSON.file + " at line " + data.responseJSON.line, "error");
                 btnRelease(btn);
             },
         });

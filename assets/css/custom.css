@@ -11,6 +11,7 @@ label.error {
 .form-control {
     height: 40px;
 }
+
 .alert-validate .btn-show-pass {
     visibility: hidden
 }
@@ -64,11 +65,10 @@ label.error {
     opacity: 1
 }
 
-@media (max-width: 992px) {
-    .alert-validate::before {
-        visibility: visible;
-        opacity: 1
-    }
+.toast-title {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.5;
 }
 
 .spinner {
@@ -129,6 +129,7 @@ label.error {
         transform: rotate(360deg)
     }
 }
+
 .btn-show-pass {
     font-size: 15px;
     color: #999;
@@ -150,6 +151,14 @@ label.error {
     transition: background .4s;
     z-index: 1;
 }
+
 .action-btn {
     font-size: 20px;
+}
+
+@media (max-width: 992px) {
+    .alert-validate::before {
+        visibility: visible;
+        opacity: 1
+    }
 }

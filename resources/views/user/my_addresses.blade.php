@@ -236,7 +236,8 @@
                                                             <input id="BillingEmail" name="BillingEmail"
                                                                    type="email"
                                                                    placeholder="Email Address"
-                                                                   class="form-control input-md required validate-field">
+                                                                   class="form-control input-md required validate-field" readonly="readonly"
+                                                            value="{{$UserData->UserEmail}}">
                                                             <span>Email Address</span>
                                                         </label>
                                                     </div>
