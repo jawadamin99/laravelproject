@@ -9,12 +9,15 @@ use App\Models\DeliveryAddress;
 use App\Models\User;
 use App\Repository\UserRepository;
 use Cassandra\Custom;
+use Dotenv\Validator;
+use http\Env\Response;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
@@ -401,6 +404,26 @@ class HomeController extends Controller
         } catch (Exception $ex) {
             return response()->json(['status' => false, 'message' => $ex->getMessage()]);
         }
-        return response()->json(['status' => true, 'message' => "The Password is changed. You can now login", 'link' =>route('login')]);
+        return response()->json(['status' => true, 'message' => "The Password is changed. You can now login", 'link' => route('login')]);
+    }
+
+    public function add_profile_picture(Request $request)
+    {
+        if (!UserRepository::is_logged_in()) {
+            return redirect('/login');
+        }
+        $path = $request->ProfilePicture->path();
+        $extension = $request->ProfilePicture->extension();
+        $validator = \Validator::make($request->all(),
+            [
+                'ProfilePicture' => 'required|mimes:jpg,bmp,png,jpeg|max:3072'
+            ]
+        );
+        if ($validator->fails()) {
+            return response()->json(['status' => false, 'message' => $validator->errors()->all()]);
+        }
+        $filename = Session::get('UserID')."-profile_picture-".$request->file('ProfilePicture')->getClientOriginalName();
+        $filePath = $request->file('ProfilePicture')->storeAs('/assets/images/profile_pictures', $filename, 'public');
+        return response()->json(['status'=>true,'url'=>URL($filePath)]);
     }
 }

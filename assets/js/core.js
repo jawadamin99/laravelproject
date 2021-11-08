@@ -433,3 +433,32 @@ $(".delete_address").click(function (e) {
     })
 });
 
+$(document).on("change", "#ProfilePicture", function (e) {
+    var formData = new FormData();
+    formData.append("test", "test");
+    formData.append('ProfilePicture', $("#ProfilePicture").prop('files')[0]);
+    swal({
+        title: 'Change Profile Picture?',
+        text: 'Are you sure',
+        icon: "info",
+        buttons: true,
+    }).then((willDelete) => {
+        if (willDelete) {
+            $.ajax({
+                url: base + "add_profile_picture",
+                type: "POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    if (data.status) {
+                        swal("Profile Picture Updated", "Your Profile Picture has been updated", "success");
+                        $("#CustomerProfilePicture").attr("src", data.url);
+                    } else {
+                        swal("FileType not allowed", data.message.toString(), "warning");
+                    }
+                }
+            });
+        }
+    });
+});

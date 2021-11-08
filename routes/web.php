@@ -34,4 +34,5 @@ Route::post('/delete_address', [HomeController::class, 'delete_address']);
 Route::get('/change_password/{token}', [HomeController::class, 'change_password'])->name('change_password');
 Route::get('/activate_account/{token}', [HomeController::class, 'activate_account'])->name('activate_account');
 Route::post('/change_password_handler', [HomeController::class, 'change_password_handler']);
+Route::post('/add_profile_picture', [HomeController::class, 'add_profile_picture']);
 
