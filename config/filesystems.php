@@ -64,6 +64,12 @@ return [
             'url' => env('AWS_URL'),
             'endpoint' => env('AWS_ENDPOINT'),
         ],
+        'localassets' =>
+        [
+            'driver' => 'local',
+            'root'   => 'assets/images',
+            'url' => env('APP_URL').'/assets/images',
+        ]
 
     ],
 

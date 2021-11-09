@@ -94,4 +94,10 @@ class UserRepository
         $user->update(['Active' => 'Y']);
         DB::table('account_activation_links')->where('ActivationLink', '=', $token_data->ActivationLink)->delete();
     }
+
+    public static function update_profile_picture($filePath)
+    {
+        $user = Customer::where('UserID', Session::get('UserID'));
+        $user->update(['ProfilePicture' => $filePath]);
+    }
 }
