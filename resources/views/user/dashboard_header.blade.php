@@ -4,7 +4,7 @@
             <div class="col-lg-12">
                 <div class="user-dt">
                     <div class="user-img">
-                        <img src="{{URL('assets/images/avatar/img-21.jpg')}}"
+                        <img src="{{$UserData->ProfilePicture ? Storage::disk('localassets')->url($UserData->ProfilePicture):URL('assets/images/avatar/img-21.jpg')}}"
                              alt="{{$UserData->BillingFirstName .' ' . $UserData->BillingLastName}}" id="CustomerProfilePicture">
                         <div class="img-add">
                             <input type="file" id="ProfilePicture" name="ProfilePicture">

@@ -423,7 +423,8 @@ class HomeController extends Controller
             return response()->json(['status' => false, 'message' => $validator->errors()->all()]);
         }
         $filename = Session::get('UserID')."-profile_picture-".$request->file('ProfilePicture')->getClientOriginalName();
-        $filePath = $request->file('ProfilePicture')->storeAs('/assets/images/profile_pictures', $filename, 'public');
-        return response()->json(['status'=>true,'url'=>URL($filePath)]);
+        $filePath = $request->file('ProfilePicture')->storeAs('profile_pictures', $filename, 'localassets');
+        UserRepository::update_profile_picture($filePath);
+        return response()->json(['status'=>true,'url'=>Storage::disk('localassets')->url($filePath)]);
     }
 }
