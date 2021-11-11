@@ -12,6 +12,7 @@
 */
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Ajax;
 
 //routes for public users
@@ -41,3 +42,12 @@ Route::middleware(['loggedinuser'])->group(function () {
     Route::post('/delete_address', [HomeController::class, 'delete_address']);
 });
 
+/* Admin Routes */
+Route::prefix('admin')->group(function () {
+    Route::get('login', [AdminController::class, 'login']);
+    Route::post('login', [AdminController::class, 'login_handler']);
+    Route::get('logout', [AdminController::class, 'logout']);
+    Route::middleware(['adminaccess'])->group(function () {
+        Route::get('/', [AdminController::class, 'index']);
+    });
+});
