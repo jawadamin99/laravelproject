@@ -16,6 +16,11 @@
                                                 <p>{{session('success_message')}}</p>
                                             </div>
                                         @endif
+                                        @if(session('error_message'))
+                                            <div class="alert alert-danger">
+                                                <p>{{session('error_message')}}</p>
+                                            </div>
+                                        @endif
                                         <div class="form-group pos_rel">
                                             <label class="has-float-label validate-input" data-validate="Please Enter Email Address">
                                                 <input id="UserEmail" name="UserEmail" type="email"

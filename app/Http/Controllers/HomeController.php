@@ -21,12 +21,6 @@ use Illuminate\Support\Facades\Storage;
 
 class HomeController extends Controller
 {
-    //
-    public function index()
-    {
-        echo "Index";
-    }
-
     public function home()
     {
         $data = [];
@@ -42,9 +36,6 @@ class HomeController extends Controller
 
     public function register()
     {
-        if (UserRepository::is_logged_in()) {
-            return redirect('my_account');
-        }
         return view('register');
     }
 
@@ -91,9 +82,6 @@ class HomeController extends Controller
 
     public function login()
     {
-        if (UserRepository::is_logged_in()) {
-            return redirect('my_account');
-        }
         return view('login');
     }
 
@@ -124,9 +112,6 @@ class HomeController extends Controller
 
     public function my_account()
     {
-        if (!UserRepository::is_logged_in()) {
-            return redirect('login');
-        }
         $UserData = Customer::findorFail(Session::get('UserID'));
         $UserData->UserPassword = "";
         return view('user.dashboard')->with('UserData', $UserData);
@@ -134,9 +119,6 @@ class HomeController extends Controller
 
     public function my_addresses()
     {
-        if (!UserRepository::is_logged_in()) {
-            return redirect('login');
-        }
         $UserData = Customer::findorFail(Session::get('UserID'));
         $UserData->UserPassword = "";
         return view('user.my_addresses')->with('UserData', $UserData);
@@ -144,9 +126,6 @@ class HomeController extends Controller
 
     public function add_billing_address(Request $request)
     {
-        if (!UserRepository::is_logged_in()) {
-            return redirect('/login');
-        }
         $validator = \Validator::make($request->all(), [
             'BillingTitle' => 'required|max:10',
             'BillingFirstName' => 'required|max:255',
@@ -186,9 +165,6 @@ class HomeController extends Controller
 
     public function edit_billing_address(Request $request)
     {
-        if (!UserRepository::is_logged_in()) {
-            return redirect('/login');
-        }
         $validator = \Validator::make($request->all(), [
             'BillingTitle' => 'required|max:10',
             'BillingFirstName' => 'required|max:255',
@@ -226,9 +202,6 @@ class HomeController extends Controller
 
     public function add_delivery_address(Request $request)
     {
-        if (!UserRepository::is_logged_in()) {
-            return redirect('/login');
-        }
         $validator = \Validator::make($request->all(), [
             'DeliveryTitle' => 'required|max:10',
             'DeliveryFirstName' => 'required|max:255',
@@ -270,10 +243,6 @@ class HomeController extends Controller
 
     public function edit_delivery_address(Request $request)
     {
-        if (!UserRepository::is_logged_in()) {
-            return redirect('/login');
-        }
-
         $validator = \Validator::make($request->all(), [
             'DeliveryTitle' => 'required|max:10',
             'DeliveryFirstName' => 'required|max:255',
@@ -409,9 +378,6 @@ class HomeController extends Controller
 
     public function add_profile_picture(Request $request)
     {
-        if (!UserRepository::is_logged_in()) {
-            return redirect('/login');
-        }
         $path = $request->ProfilePicture->path();
         $extension = $request->ProfilePicture->extension();
         $validator = \Validator::make($request->all(),
@@ -422,9 +388,9 @@ class HomeController extends Controller
         if ($validator->fails()) {
             return response()->json(['status' => false, 'message' => $validator->errors()->all()]);
         }
-        $filename = Session::get('UserID')."-profile_picture-".$request->file('ProfilePicture')->getClientOriginalName();
+        $filename = Session::get('UserID') . "-profile_picture-" . $request->file('ProfilePicture')->getClientOriginalName();
         $filePath = $request->file('ProfilePicture')->storeAs('profile_pictures', $filename, 'localassets');
         UserRepository::update_profile_picture($filePath);
-        return response()->json(['status'=>true,'url'=>Storage::disk('localassets')->url($filePath)]);
+        return response()->json(['status' => true, 'url' => Storage::disk('localassets')->url($filePath)]);
     }
 }
