@@ -17,7 +17,6 @@ class AdminController extends Controller
     }
     public function login_handler(Request $request)
     {
-        return response()->json(['success'=>false,'message'=>'testing error']);
-        dd($request->all());
+        return response()->json(['status'=>false,'message'=>'testing error']);
     }
 }

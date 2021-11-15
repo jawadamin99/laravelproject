@@ -18,16 +18,6 @@ use App\Http\Controllers\Ajax;
 //routes for public users
 Route::get('/', [HomeController::class, 'home']);
 Route::get('/about', [HomeController::class, 'about']);
-Route::get('/register', [HomeController::class, 'register']);
-Route::post('/register', [HomeController::class, 'register_handler']);
-Route::get('/login', [HomeController::class, 'login']);
-Route::post('/login', [HomeController::class, 'login_handler'])->name('login');
-Route::get('/logout', [HomeController::class, 'logout']);
-Route::get('/change_password/{token}', [HomeController::class, 'change_password'])->name('change_password');
-Route::get('/activate_account/{token}', [HomeController::class, 'activate_account'])->name('activate_account');
-Route::post('/change_password_handler', [HomeController::class, 'change_password_handler']);
-Route::post('/forget_password_handler', [HomeController::class, 'forget_password_handler']);
-Route::get('/forget_password', [HomeController::class, 'forget_password']);
 
 //routes for logged in users
 Route::middleware(['loggedinuser'])->group(function () {
@@ -40,6 +30,18 @@ Route::middleware(['loggedinuser'])->group(function () {
     Route::post('/edit_billing_address', [HomeController::class, 'edit_billing_address']);
     Route::post('/edit_delivery_address', [HomeController::class, 'edit_delivery_address']);
     Route::post('/delete_address', [HomeController::class, 'delete_address']);
+
+    Route::get('/register', [HomeController::class, 'register']);
+    Route::post('/register', [HomeController::class, 'register_handler']);
+    Route::get('/login', [HomeController::class, 'login']);
+    Route::post('/login', [HomeController::class, 'login_handler'])->name('login');
+    Route::get('/logout', [HomeController::class, 'logout']);
+    Route::get('/change_password/{token}', [HomeController::class, 'change_password'])->name('change_password');
+    Route::get('/activate_account/{token}', [HomeController::class, 'activate_account'])->name('activate_account');
+    Route::post('/change_password_handler', [HomeController::class, 'change_password_handler']);
+    Route::post('/forget_password_handler', [HomeController::class, 'forget_password_handler']);
+    Route::get('/forget_password', [HomeController::class, 'forget_password']);
+
 });
 
 /* Admin Routes */

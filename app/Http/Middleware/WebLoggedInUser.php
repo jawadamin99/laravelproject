@@ -17,7 +17,15 @@ class WebLoggedInUser
      */
     public function handle($request, Closure $next)
     {
-        if (!UserRepository::is_logged_in()) {
+        $current_path = $request->path();
+        $public_paths = ['login','register', 'change_password', 'activate_account', 'forget_password', 'forget_password_handler'];
+
+        if (in_array($current_path, $public_paths)) {
+            if (UserRepository::is_logged_in()) {
+                return redirect('/my_account');
+            }
+        }
+        else if (!UserRepository::is_logged_in()) {
             Session::flash('error_message', 'You must be logged in to proceed further');
             return redirect('/login');
         }

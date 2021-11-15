@@ -119,17 +119,16 @@ function submit(btn, form, alert = false, reload = false, modal = false) {
                 if (modal) {
                     modal.find('.btn-close').click();
                 }
-                toastr.options = {
-                    preventDuplicates: true,
-                    tapToDismiss: false,
-                    newestOnTop: true,
-                    progressBar: true,
-                };
 
                 if (response.status) {
                     if (alert) {
-                        toastr.success('', response.message, {
-                            onHidden: function () {
+                        swal({
+                            title: "",
+                            text: response.message,
+                            icon: "success",
+                            buttons: true,
+                        }).then((action) => {
+                            if (action) {
                                 if (reload) {
                                     location.reload();
                                 } else {
@@ -143,7 +142,7 @@ function submit(btn, form, alert = false, reload = false, modal = false) {
                         window.location = response.link;
                     }
                 } else {
-                    toastr.error(response.message);
+                    swal('Error',response.message, "error");
                 }
             },
             error: function (data) {

@@ -15,6 +15,7 @@
     <link href="{{asset('admin/vendor/fontawesome-free/css/all.min.css')}}" rel="stylesheet">
     <!-- Custom Admin StyleSheet -->
     <link href="{{asset('css/plugins.css')}}" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" rel="stylesheet">
     <link href="{{asset('admin/css/admin-custom.css')}}" rel="stylesheet">
 </head>
 

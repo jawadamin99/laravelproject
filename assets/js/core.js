@@ -435,7 +435,6 @@ $(".delete_address").click(function (e) {
 
 $(document).on("change", "#ProfilePicture", function (e) {
     var formData = new FormData();
-    formData.append("test", "test");
     formData.append('ProfilePicture', $("#ProfilePicture").prop('files')[0]);
     swal({
         title: 'Change Profile Picture?',

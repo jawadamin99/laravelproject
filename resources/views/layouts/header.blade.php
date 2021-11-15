@@ -425,17 +425,12 @@
                                 </div>
                                 <a href="{{URL('my_account')}}" class="item channel_item"><i
                                         class="uil uil-apps icon__1"></i>Dashbaord</a>
-                                <a href="dashboard_my_orders.html" class="item channel_item"><i
+                                <a href="#" class="item channel_item"><i
                                         class="uil uil-box icon__1"></i>My Orders</a>
-                                <a href="dashboard_my_wishlist.html" class="item channel_item"><i
+                                <a href="#" class="item channel_item"><i
                                         class="uil uil-heart icon__1"></i>My Wishlist</a>
-                                <a href="dashboard_my_wallet.html" class="item channel_item"><i
-                                        class="uil uil-usd-circle icon__1"></i>My Wallet</a>
-                                <a href="dashboard_my_addresses.html" class="item channel_item"><i
+                                <a href="{{URL('my_addresses')}}" class="item channel_item"><i
                                         class="uil uil-location-point icon__1"></i>My Address</a>
-                                <a href="offers.html" class="item channel_item"><i
-                                        class="uil uil-gift icon__1"></i>Offers</a>
-                                <a href="faq.html" class="item channel_item"><i class="uil uil-info-circle icon__1"></i>Faq</a>
                                 <a href="{{URL('/logout')}}" class="item channel_item"><i
                                         class="uil uil-lock-alt icon__1"></i>Logout</a>
                                 @endif
