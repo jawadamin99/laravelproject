@@ -48,8 +48,12 @@ Route::middleware(['loggedinuser'])->group(function () {
 Route::prefix('admin')->group(function () {
     Route::get('login', [AdminController::class, 'login']);
     Route::post('login', [AdminController::class, 'login_handler']);
-    Route::get('logout', [AdminController::class, 'logout']);
+    Route::get('logout', [AdminController::class, 'logout'])->name('admin.logout');
+
     Route::middleware(['adminaccess'])->group(function () {
-        Route::get('/', [AdminController::class, 'index']);
+        Route::get('/', [AdminController::class, 'index'])->name('admin');
+        Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
+        Route::get('addCategory', [AdminController::class, 'addCategory'])->name('admin.addCategory');
+        Route::get('categories', [AdminController::class, 'categories'])->name('admin.categories');
     });
 });
