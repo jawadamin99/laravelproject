@@ -13,41 +13,60 @@
                     <h4>Add New Category</h4>
                 </div>
                 <div class="card-body-table">
-                    <div class="news-content-right pd-20">
-                        <div class="form-group">
-                            <label class="form-label">Name*</label>
-                            <input type="text" class="form-control" placeholder="Category Name">
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Status*</label>
-                            <select id="status" name="status" class="form-control">
-                                <option selected>Active</option>
-                                <option value="1">Inactive</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Category Image*</label>
-                            <div class="input-group">
+                    <form id="addCategory_form" name="addCategory_form" enctype="multipart/form-data" method="post"
+                          action="" novalidate>
+                        <div class="news-content-right pd-20">
+                            <div class="form-group">
+                                <label class="form-label has-float-label validate-input"
+                                       data-validate="Please enter category name">
+                                    <input type="text" class="form-control validate-field" placeholder="Category Name"
+                                           id="Name" name="Name">
+                                    <span>Category Name</span>
+                                </label>
+                                <label class="form-label has-float-label validate-input"
+                                       data-validate="Please select Status">
+                                    <select id="Activate" name="Activate" class="form-control validate-field">
+                                        <option value="">Status</option>
+                                        <option value="Y">Activat</option>
+                                        <option value="N">In-Active</option>
+                                    </select>
+                                </label>
                                 <div class="custom-file">
-                                    <input type="file" class="custom-file-input" id="inputGroupFile04"
-                                           aria-describedby="inputGroupFileAddon04">
+                                    <label class="form-label has-float-label">
+                                        <input type="file" class="custom-file-input" id="Image"
+                                               name="Image"
+                                               aria-describedby="CategoryImage">
+                                    </label>
                                     <label class="custom-file-label" for="inputGroupFile04">Choose Image</label>
                                 </div>
-                            </div>
-                            <div class="add-cate-img">
-                                <img src="{{asset('images/category/icon-1.svg')}}" alt="">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label">Description*</label>
-                            <div class="card card-editor">
-                                <div class="content-editor">
-                                    <textarea class="text-control" placeholder="Enter Description"></textarea>
+                                <div class="add-cate-img">
+                                    <img src="{{asset('images/category/icon-1.svg')}}" alt="" id="categoryImagePreview">
+                                </div>
+                                <label class="form-label has-float-label validate-input"
+                                       data-validate="Please select Parent Category">
+                                    <select id="ParentCategory" name="ParentCategory"
+                                            class="form-control validate-field">
+                                        <option value="">Parent Category</option>
+                                        <option value="1">Mobiles</option>
+                                        <option value="2">Computers</option>
+                                    </select>
+                                </label>
+                                <div class="card card-editor">
+                                    <div class="content-editor">
+                                        <label class="form-label has-float-label validate-input"
+                                               data-validate="Please enter description">
+                                            <textarea class="text-control validate-field"
+                                                      placeholder="Enter Description"
+                                                      id="Description"></textarea>
+                                            <span>Category Description</span>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
+                            <button class="save-btn hover-btn w-25" type="button" id="addCategory_btn">Add New Category
+                            </button>
                         </div>
-                        <button class="save-btn hover-btn" type="submit">Add New Category</button>
-                    </div>
+                    </form>
                 </div>
             </div>
         </div>

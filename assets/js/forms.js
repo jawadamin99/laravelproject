@@ -4,7 +4,7 @@ function validate(a) {
     var phone_fields = ['BillingMobile', 'DeliveryMobile'];
     if ("email" == $(a).attr("type") || email_fields.includes($(a).attr("name"))) {
         if (null == $(a).val().trim().match(/^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\.)+))([a-zA-Z]{1,5}|[0-9]{1,3})(\]?)$/)) return !1
-    } else if ("name" == $(a).attr("name") || name_fields.includes($(a).attr("name"))) {
+    } else if ("Name" == $(a).attr("name") || name_fields.includes($(a).attr("name"))) {
         if (null == $(a).val().trim().match(/^[a-z ,.'-]+$/i)) return !1
     } else if (phone_fields.includes($(a).attr("name"))) {
         if (null == $(a).val().trim().match(/[0-9]/)) return !1
@@ -43,6 +43,7 @@ $('.modal').on('hidden.bs.modal', function (e) {
 function checkValidation(el) {
     var check = true;
     var fields = $(el).find('.validate-input .validate-field');
+    console.log(fields);
     for (var i = 0; i < fields.length; i++) {
         if ($(fields[i]).is(':visible')) {
             if (validate(fields[i]) == false) {
