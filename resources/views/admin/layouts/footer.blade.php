@@ -20,7 +20,8 @@
 <script src="{{asset('admin/vendor/chart/export-data.js')}}"></script>
 <script src="{{asset('admin/vendor/chart/accessibility.js')}}"></script>
 <script src="https://malsup.github.io/jquery.form.js"></script>
-<script src="{{URL('assets/js/forms.js')}}"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="{{asset('js/forms.js')}}"></script>
 <script src="{{asset('admin/js/chart.js')}}"></script>
 <script src="{{asset('admin/js/scripts.js')}}"></script>
 

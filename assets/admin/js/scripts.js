@@ -34,5 +34,5 @@ $(document).on("click", "#login_btn", function (e) {
     submit($(this), $('#login_form'));
 });
 $(document).on("click", "#addCategory_btn", function (e) {
-    submit($(this), $('#addCategory_form'));
+    submit($(this), $('#addCategory_form'),true);
 });

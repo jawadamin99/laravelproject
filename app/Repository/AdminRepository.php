@@ -3,6 +3,7 @@
 namespace App\Repository;
 
 
+use App\Models\Category;
 use App\Models\Customer;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -45,5 +46,16 @@ class AdminRepository
         Session::put('AdminID', $user->UserID);
         Session::put('admin_logged_in', TRUE);
         Session::put('AdminData', $user_data);
+    }
+    public static function addCategory($request)
+    {
+        $insert_data = [
+            'Name' => $request->Name,
+            'Image' => $request->Image,
+            'Description' => $request->Description,
+            'ParentCategory' => $request->ParentCategory,
+            'Activate' => $request->Activate,
+        ];
+        Category::create($insert_data);
     }
 }

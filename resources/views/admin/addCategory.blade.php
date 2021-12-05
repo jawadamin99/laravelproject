@@ -1,6 +1,6 @@
 @extends('admin.layouts.app')
 @section('main_content')
-    <h2 class="mt-30 page-title">Categories</h2>
+    <h2 class="mt-30 page-title">Add New Category</h2>
     <ol class="breadcrumb mb-30">
         <li class="breadcrumb-item"><a href="{{route('admin.dashboard')}}">Dashboard</a></li>
         <li class="breadcrumb-item"><a href="{{route('admin.categories')}}">Categories</a></li>
@@ -14,50 +14,49 @@
                 </div>
                 <div class="card-body-table">
                     <form id="addCategory_form" name="addCategory_form" enctype="multipart/form-data" method="post"
-                          action="" novalidate>
+                            action="" novalidate>
                         <div class="news-content-right pd-20">
                             <div class="form-group">
                                 <label class="form-label has-float-label validate-input"
-                                       data-validate="Please enter category name">
+                                        data-validate="Please enter category name">
                                     <input type="text" class="form-control validate-field" placeholder="Category Name"
-                                           id="Name" name="Name">
+                                            id="Name" name="Name">
                                     <span>Category Name</span>
                                 </label>
                                 <label class="form-label has-float-label validate-input"
-                                       data-validate="Please select Status">
+                                        data-validate="Please select Status">
                                     <select id="Activate" name="Activate" class="form-control validate-field">
                                         <option value="">Status</option>
-                                        <option value="Y">Activat</option>
+                                        <option value="Y">Activate</option>
                                         <option value="N">In-Active</option>
                                     </select>
                                 </label>
                                 <div class="custom-file">
                                     <label class="form-label has-float-label">
-                                        <input type="file" class="custom-file-input" id="Image"
-                                               name="Image"
-                                               aria-describedby="CategoryImage">
+                                        <input type="file" class="custom-file-input" id="Image" name="Image" aria-describedby="CategoryImage">
                                     </label>
                                     <label class="custom-file-label" for="inputGroupFile04">Choose Image</label>
                                 </div>
                                 <div class="add-cate-img">
                                     <img src="{{asset('images/category/icon-1.svg')}}" alt="" id="categoryImagePreview">
                                 </div>
-                                <label class="form-label has-float-label validate-input"
-                                       data-validate="Please select Parent Category">
+                                <label class="form-label has-float-label"
+                                        data-validate="Please select Parent Category">
                                     <select id="ParentCategory" name="ParentCategory"
-                                            class="form-control validate-field">
-                                        <option value="">Parent Category</option>
+                                            class="form-control">
+                                        <option value="0">Parent Category</option>
                                         <option value="1">Mobiles</option>
                                         <option value="2">Computers</option>
                                     </select>
+                                    <span>Parent Category</span>
                                 </label>
                                 <div class="card card-editor">
                                     <div class="content-editor">
                                         <label class="form-label has-float-label validate-input"
-                                               data-validate="Please enter description">
+                                                data-validate="Please enter description">
                                             <textarea class="text-control validate-field"
-                                                      placeholder="Enter Description"
-                                                      id="Description"></textarea>
+                                                    placeholder="Enter Description"
+                                                    id="Description" name="Description"></textarea>
                                             <span>Category Description</span>
                                         </label>
                                     </div>

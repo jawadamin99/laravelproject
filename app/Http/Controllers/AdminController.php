@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Repository\AdminRepository;
 use Dotenv\Validator;
 use Illuminate\Http\Request;
@@ -47,8 +48,32 @@ class AdminController extends Controller
         }
         return response()->json(['status' => true, 'link' => route('admin.dashboard')]);
     }
+
+    public function categories()
+    {
+        $categories = Category::all();
+        return view('admin.categories')->with('categories',$categories);
+    }
+
     public function addCategory()
     {
         return view('admin.addCategory');
+    }
+
+    public function addCategory_handler(Request $request)
+    {
+        $validator = \Validator::make($request->all(), [
+            'Name' => 'required|max:255',
+            'Activate' => 'required',
+        ]);
+        if ($validator->fails()) {
+            return response()->json(['status' => false, 'message' => $validator->errors()->all()]);
+        }
+        try {
+            AdminRepository::addCategory($request);
+        } catch (Exception $ex) {
+            return response()->json(['status' => false, 'message' => $ex->getMessage()]);
+        }
+        return response()->json(['status' => true, 'message' => 'Category ' . $request->Name . ' is created', 'link' => route('admin.categories')]);
     }
 }

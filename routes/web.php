@@ -54,6 +54,7 @@ Route::prefix('admin')->group(function () {
         Route::get('/', [AdminController::class, 'index'])->name('admin');
         Route::get('dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard');
         Route::get('addCategory', [AdminController::class, 'addCategory'])->name('admin.addCategory');
+        Route::post('addCategory', [AdminController::class, 'addCategory_handler'])->name('admin.addCategorySubmit');
         Route::get('categories', [AdminController::class, 'categories'])->name('admin.categories');
     });
 });
